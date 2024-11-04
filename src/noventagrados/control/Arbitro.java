@@ -51,7 +51,7 @@ public class Arbitro {
 		Pieza piezaPeonBlanco4 = new Pieza(TipoPieza.PEON, Color.BLANCO);
 		Pieza piezaPeonBlanco5 = new Pieza(TipoPieza.PEON, Color.BLANCO);
 		Pieza piezaPeonB = new Pieza(TipoPieza.PEON, Color.BLANCO);
-		Coordenada coordenadaPeonBlanco1 = new Coordenada(0,)
+//		Coordenada coordenadaPeonBlanco1 = new Coordenada(0,)
 		
 		
 		// [6,6] Reina negra
@@ -80,7 +80,7 @@ public class Arbitro {
 	}
 	
 	public Color consultarTurnoGanador() {
-		return this.colorTurno;
+		return this.turno;
 	}
 	
 	public void empujar(Jugada jugada) {
