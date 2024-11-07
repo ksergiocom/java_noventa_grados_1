@@ -6,8 +6,8 @@ import noventagrados.util.Color;
 import noventagrados.util.Coordenada;
 
 public class Celda {
-	Coordenada coordenada;
-	Pieza pieza;
+	private Coordenada coordenada;
+	private Pieza pieza;
 	
 	public Celda(Coordenada coordenada) {
 		this.coordenada = coordenada;
