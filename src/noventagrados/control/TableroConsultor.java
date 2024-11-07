@@ -64,7 +64,7 @@ public class TableroConsultor {
 	 * @param color
 	 * @return int (numero de piezas)
 	 */
-	public int calcularNumeroPiezas(TipoPieza tipoPieza, Color color) {
+	public int consultarNumeroPiezas(TipoPieza tipoPieza, Color color) {
 		int numPiezas = 0;
 		/*
 		 * El tablero tiene un método para recorrer todas las celdas Iteramos todas las
@@ -94,6 +94,7 @@ public class TableroConsultor {
 		//			}
 		//		}
 
+		System.out.println(numPiezas);
 		return numPiezas;
 	}
 
@@ -105,7 +106,7 @@ public class TableroConsultor {
 	 * @param coordenada
 	 * @return int
 	 */
-	public int calcularNumeroPiezasEnHorizontal(Coordenada coordenada) {
+	public int consultarNumeroPiezasEnHorizontal(Coordenada coordenada) {
 		int numPiezas = 0;
 		// Primero comprobamos si la coordenada es válida
 		if(!this.tablero.estaEnTablero(coordenada)) return numPiezas;
@@ -132,7 +133,7 @@ public class TableroConsultor {
 	 * @param coordenada
 	 * @return int
 	 */
-	public int calcularNumeroPiezasEnVertical(Coordenada coordenada) {
+	public int consultarNumeroPiezasEnVertical(Coordenada coordenada) {
 		int numPiezas = 0;
 		// Primero comprobamos si la coordenada es válida
 		if(!this.tablero.estaEnTablero(coordenada)) return numPiezas;
