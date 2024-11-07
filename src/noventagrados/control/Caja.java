@@ -54,15 +54,7 @@ public class Caja {
 	 * @return Pieza[]
 	 */
 	public Pieza[] consultarPiezas() {
-		Pieza[] clonPiezas = new Pieza[7];
-		// Clonar todos los objetos del array de piezas
-		for(int i=0; i<this.piezas.length; i++) {
-			if(this.piezas[i] != null) {
-				clonPiezas[i] = this.piezas[i].clonar();				
-			}
-		}
-		
-		return clonPiezas;
+		// LOL QUEDA PENDIENTE ESTO!!!!!!!!!!!!
 	}
 	
 	/**
@@ -82,6 +74,9 @@ public class Caja {
 	 */
 	public int contarPiezas(TipoPieza tipoPieza) {
 		int numPiezas=0;
+		
+		// FUCK IT
+		if(this.piezas == null) return numPiezas;
 
 		for(int i=0; i<this.piezas.length; i++) {
 			// Comprobar si existe la pieza y si su tipo es igual al tipo proporcionado
