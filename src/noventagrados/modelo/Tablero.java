@@ -73,7 +73,10 @@ public class Tablero {
 	public Celda consultarCelda(Coordenada coordenada) {
 		if(!this.estaEnTablero(coordenada)) return null;
 		
-		return this.tablero[coordenada.fila()][coordenada.columna()];
+		Celda celdaConsultada = this.tablero[coordenada.fila()][coordenada.columna()];
+		
+		return celdaConsultada.clonar();
+		
 	}
 	
 	/**
