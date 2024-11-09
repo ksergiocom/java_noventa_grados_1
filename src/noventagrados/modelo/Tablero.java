@@ -65,7 +65,7 @@ public class Tablero {
 		// Comprobaciones, clausula de guarda
 		if(pieza == null || this.estaEnTablero(coordenada) == false) return;
 		
-		Celda celdaActual = this.consultarCelda(coordenada);
+		Celda celdaActual = this.obtenerCelda(coordenada);
 		
 		celdaActual.colocar(pieza);
 	}
@@ -135,14 +135,10 @@ public class Tablero {
 		return estaDentro; 
 	}
 	
-	Celda obtenerCelda(Coordenada coordenada) {
-		// Si no esta en el tablero devuelve un null
-		if(this.estaEnTablero(coordenada) == false) return null;
-		
-		// Requiere un deep clone. Por lo cual hay que generar un nuevo objeto Celda
-		Celda celda = this.tablero[coordenada.fila()][coordenada.columna()];
-		return celda.clonar();
-	}
+    public Celda obtenerCelda(Coordenada coordenada) {
+        if (!this.estaEnTablero(coordenada)) return null;
+        return this.tablero[coordenada.fila()][coordenada.columna()];  // Devolvemos la referencia de la celda
+    }
 
 	@Override
 	public int hashCode() {
