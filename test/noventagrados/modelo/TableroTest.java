@@ -279,6 +279,8 @@ public class TableroTest {
 			// when eliminamos la pieza recién colocada...
 			tablero.eliminarPieza(new Coordenada(fila, columna));
 
+			System.out.println(tablero.consultarCelda(new Coordenada(fila, columna)));
+			
 			// then
 			assertAll("la celda debería estar vacía tras eliminar la pieza", () -> assertThat("Debería estar vacía",
 					tablero.consultarCelda(new Coordenada(fila, columna)).estaVacia(), is(true)));

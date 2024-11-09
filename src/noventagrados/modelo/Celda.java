@@ -20,7 +20,7 @@ public class Celda {
 		
 		// Existe una pieza dentro?
 		if(this.pieza != null) {
-		clonPieza= this.pieza.clonar();
+			clonPieza= this.pieza.clonar();
 		}
 		
 		Celda celdaClon = new Celda(clonCoordenada);

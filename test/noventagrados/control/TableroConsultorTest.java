@@ -553,6 +553,7 @@ public class TableroConsultorTest {
 							assertFalse("La celda está vacía", celda.estaVacia());
 						}
 					}
+					
 					assertThat("Número de piezas incorrecto para tipo de pieza " + tipoPieza + " de color"
 							+ color
 							+ " en un tablero relleno:\n" +

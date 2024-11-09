@@ -15,8 +15,9 @@ public class TableroConsultor {
 	private Tablero tablero;
 
 	public TableroConsultor(Tablero tablero) {
-		this.tablero = tablero.clonar(); // Clonamos tablero para hacer consultas
-	}
+        // Crear una nueva instancia de Tablero sin usar el método clonar()
+        this.tablero = tablero;
+    }
 
 	public Sentido calcularSentido(Coordenada origen, Coordenada destino) {
 		int diferenciaFilas = destino.fila() - origen.fila();

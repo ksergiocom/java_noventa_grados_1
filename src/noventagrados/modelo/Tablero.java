@@ -113,7 +113,7 @@ public class Tablero {
 		// Si NO esta en el tablero no hacer nada
 		if(this.estaEnTablero(coordenada) == false) return;
 		
-		this.consultarCelda(coordenada).eliminarPieza();
+		this.obtenerCelda(coordenada).eliminarPieza();
 	}
 	
 	public boolean estaEnTablero(Coordenada coordenada) {
