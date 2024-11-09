@@ -93,8 +93,6 @@ public class TableroConsultor {
 		//				this.tablero.consult
 		//			}
 		//		}
-
-		System.out.println(numPiezas);
 		return numPiezas;
 	}
 
@@ -135,6 +133,7 @@ public class TableroConsultor {
 	 */
 	public int consultarNumeroPiezasEnVertical(Coordenada coordenada) {
 		int numPiezas = 0;
+		
 		// Primero comprobamos si la coordenada es válida
 		if(!this.tablero.estaEnTablero(coordenada)) return numPiezas;
 		
@@ -146,7 +145,11 @@ public class TableroConsultor {
 		for(int i=0; i<tamanoColumna; i++) {
 			Coordenada coordeanadaAIterar = new Coordenada(i, coordenada.columna());
 			Celda celdaIterada = this.tablero.consultarCelda(coordeanadaAIterar);
-			if(celdaIterada.consultarPieza() != null) numPiezas++;
+//			System.out.println(celdaIterada);
+			if(celdaIterada.consultarPieza() != null) {
+				numPiezas++;
+			} 
+				
 		}
 		
 		return numPiezas;
