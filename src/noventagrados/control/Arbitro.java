@@ -1,6 +1,7 @@
 package noventagrados.control;
 
 import noventagrados.modelo.Tablero;
+import noventagrados.control.TableroConsultor;
 import noventagrados.modelo.Pieza;
 
 import java.util.Objects;
@@ -10,16 +11,21 @@ import noventagrados.modelo.Jugada;
 import noventagrados.util.Color;
 import noventagrados.util.Coordenada;
 import noventagrados.util.TipoPieza;
+import noventagrados.util.Sentido;
 
 public class Arbitro {
 	private Tablero tablero;
 	private int contadorJugadas;
 	private Color turno;
+	private Caja cajaNegra;
+	private Caja cajaBlanca;
 	
 	public Arbitro(Tablero tablero) {
 		this.tablero = tablero;
 		this.contadorJugadas = 0;
 		this.turno = null;
+		this.cajaNegra = new Caja(Color.NEGRO);
+		this.cajaBlanca = new Caja(Color.BLANCO);
 	}
 	
 	public void cambiarTurno() {
@@ -94,8 +100,11 @@ public class Arbitro {
 
 	
 	public Caja consultarCaja(Color color) {
-		// Implementacion Dummy
-		return new Caja(Color.BLANCO);
+		if(color == Color.BLANCO) {
+			return this.cajaBlanca;
+		}else {
+			return this.cajaNegra;
+		}
 	}
 	
 	public int consultarNumeroJugada() {
@@ -119,7 +128,32 @@ public class Arbitro {
 	}
 	
 	public boolean esMovimientoLegal(Jugada jugada) {
-		return false;
+		boolean jugadaLegal = true;
+		
+		// Si la coordenda de destino no esta en tablero, entonces es ilegal
+		if(!this.tablero.estaEnTablero(jugada.destino().consultarCoordenada())) jugadaLegal = false;
+		
+		// Datos para comprobar si es legal
+		// Necesitas el TableroConsultor para el sentido
+		TableroConsultor consultor = new TableroConsultor(this.tablero);
+		Sentido sentido = consultor.calcularSentido(jugada.origen().consultarCoordenada(), jugada.destino().consultarCoordenada());
+		int distancia;
+		int numPiezas;
+		
+		// Horizontales
+		if(sentido == Sentido.HORIZONTAL_E || sentido == Sentido.HORIZONTAL_O) {
+			distancia = consultor.consultarDistanciaEnHorizontal(jugada.origen().consultarCoordenada(), jugada.destino().consultarCoordenada());
+			numPiezas = consultor.consultarNumeroPiezasEnHorizontal(jugada.origen().consultarCoordenada());
+			if(distancia != numPiezas) jugadaLegal = false;
+		}
+		// Verticales
+		else {
+			distancia = consultor.consultarDistanciaEnVertical(jugada.origen().consultarCoordenada(), jugada.destino().consultarCoordenada());
+			numPiezas = consultor.consultarNumeroPiezasEnVertical(jugada.origen().consultarCoordenada());
+			if(distancia != numPiezas) jugadaLegal = false;			
+		}
+		
+		return jugadaLegal;
 	}
 	
 	public boolean estaFinalizadaPartida() {
@@ -149,5 +183,4 @@ public class Arbitro {
 		return "Arbitro [tablero=" + tablero + ", contadorJugadas=" + contadorJugadas + ", turno=" + turno + "]";
 	}
 	
-	// Pendiente toString()
 }
