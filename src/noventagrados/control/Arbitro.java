@@ -158,7 +158,7 @@ public class Arbitro {
 		Celda celdaDestino = jugada.destino();		
 		Sentido sentido = consultor.calcularSentido(celdaOrigen.consultarCoordenada(), celdaDestino.consultarCoordenada());
 
-		Celda celdaIterada = celdaOrigen;
+		Celda celdaIterada = this.tablero.consultarCelda(celdaOrigen.consultarCoordenada());
 		do {
 			Pieza piezaCeldaIterada = celdaIterada.consultarPieza();
 			// ¿Tiene una pieza esta celda?
