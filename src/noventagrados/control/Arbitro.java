@@ -5,7 +5,9 @@ import noventagrados.control.TableroConsultor;
 import noventagrados.modelo.Pieza;
 
 import java.util.Objects;
+import java.util.LinkedList; // LOL lo usamos como una pila
 
+import noventagrados.modelo.Celda;
 import noventagrados.modelo.Jugada;
 
 import noventagrados.util.Color;
@@ -120,10 +122,100 @@ public class Arbitro {
 	}
 	
 	public Color consultarTurnoGanador() {
-		return this.turno;
+		Color colorDevuelto = null;
+		
+		//Si reina llega a centro (3,3) gana ese color
+		Coordenada coordenadaCentro = new Coordenada(3,3);
+		Celda celdaCentral = this.tablero.consultarCelda(coordenadaCentro);
+		Pieza piezaCentral = celdaCentral.consultarPieza();
+		
+		// Comprobamos si hay una pieza en el centro
+		if(piezaCentral != null) {
+			boolean piezaCentralEsReina = piezaCentral.consultarTipoPieza() == TipoPieza.REINA;
+			Color colorPiezaCentral = piezaCentral.consultarColor();
+			
+			if(piezaCentralEsReina	&& colorPiezaCentral == Color.BLANCO) {
+				colorDevuelto = Color.BLANCO;
+			}
+			
+			if(piezaCentralEsReina	&& colorPiezaCentral == Color.NEGRO) {
+				colorDevuelto = Color.NEGRO;
+			}			
+		}
+		
+		
+		//Si la reina esta fuera de tablero gana el color contrario
+		if(this.cajaNegra.contarPiezas(TipoPieza.REINA) > 0) colorDevuelto = Color.BLANCO;
+		if(this.cajaBlanca.contarPiezas(TipoPieza.REINA) > 0) colorDevuelto = Color.NEGRO;
+		
+		return colorDevuelto;
 	}
 	
 	public void empujar(Jugada jugada) {
+		TableroConsultor consultor = new TableroConsultor(this.tablero);
+		LinkedList<Pieza> almacenPiezas = new LinkedList<Pieza>();
+		Celda celdaOrigen = jugada.origen();
+		Celda celdaDestino = jugada.destino();		
+		Sentido sentido = consultor.calcularSentido(celdaOrigen.consultarCoordenada(), celdaDestino.consultarCoordenada());
+
+		Celda celdaIterada = celdaOrigen;
+		do {
+			Pieza piezaCeldaIterada = celdaIterada.consultarPieza();
+			// ¿Tiene una pieza esta celda?
+			if(piezaCeldaIterada!=null) {
+				// Creamos una pieza para moverla a la pila y trabajar con ella
+				Pieza piezaClonada = new Pieza(piezaCeldaIterada.consultarTipoPieza(), piezaCeldaIterada.consultarColor());
+				// La guardamos en la pila FIFO
+				almacenPiezas.add(piezaClonada);
+				// Quitamos de la celda original la pieza original
+				celdaIterada.eliminarPieza();
+			}
+			// Ahora buscamos la siguiente coordenada
+			Coordenada siguienteCoordenada = new Coordenada(
+					celdaIterada.consultarCoordenada().fila() + sentido.consultarDesplazamientoEnFilas(),
+					celdaIterada.consultarCoordenada().columna() + sentido.consultarDesplazamientoEnColumnas()
+					);
+			// Especificamos cual es la siguiente celda par ala proxima iteracion
+			celdaIterada = this.tablero.consultarCelda(siguienteCoordenada);
+		}while(celdaIterada.consultarCoordenada().fila() != celdaDestino.consultarCoordenada().fila() && celdaIterada.consultarCoordenada().columna() != celdaDestino.consultarCoordenada().columna());
+		
+		// Ahora celdaIterada es la celda de destino. Hemos llegado tío
+		// Ahora miramos las celdas a partir de la celda de destino y
+		// Si está llena sacamos la pieza y la metemos en la pila 
+		// Metemos en la celda la pieza de la pila
+		
+		// Celda iterada es celda destino ahora mismo
+		while(celdaIterada != null && this.tablero.estaEnTablero(celdaIterada.consultarCoordenada())) {
+			Pieza piezaCeldaIterada = celdaIterada.consultarPieza();
+			if(piezaCeldaIterada!=null) {
+				// Creamos una pieza para moverla a la pila y trabajar con ella
+				Pieza piezaClonada = new Pieza(piezaCeldaIterada.consultarTipoPieza(), piezaCeldaIterada.consultarColor());
+				// La guardamos en la pila FIFO
+				almacenPiezas.add(piezaClonada);
+				// Quitamos de la celda original la pieza original
+				celdaIterada.eliminarPieza();
+			}
+			// Sacamos el primer elemento de almacenPiezas (nuestro FIFO)
+			celdaIterada.colocar(almacenPiezas.poll());
+			Coordenada siguienteCoordenada = new Coordenada(
+					celdaIterada.consultarCoordenada().fila() + sentido.consultarDesplazamientoEnFilas(),
+					celdaIterada.consultarCoordenada().columna() + sentido.consultarDesplazamientoEnColumnas()
+					);
+			// Especificamos cual es la siguiente celda par ala proxima iteracion
+			celdaIterada = this.tablero.consultarCelda(siguienteCoordenada);
+		}
+		
+		// Aqui ya estaríamos fuera del tablero, así que el resto lo tiramos a la caja respectiva
+		// Mientras la 
+		while(!almacenPiezas.isEmpty()) {
+			Pieza piezaSacada = almacenPiezas.poll();
+			if(piezaSacada.consultarColor() == Color.BLANCO) {
+				this.cajaBlanca.añadir(piezaSacada);
+			}else {
+				this.cajaNegra.añadir(piezaSacada);
+			}
+		}
+		
 		return;
 	}
 	
@@ -143,13 +235,13 @@ public class Arbitro {
 		// Horizontales
 		if(sentido == Sentido.HORIZONTAL_E || sentido == Sentido.HORIZONTAL_O) {
 			distancia = consultor.consultarDistanciaEnHorizontal(jugada.origen().consultarCoordenada(), jugada.destino().consultarCoordenada());
-			numPiezas = consultor.consultarNumeroPiezasEnHorizontal(jugada.origen().consultarCoordenada());
+			numPiezas = consultor.consultarNumeroPiezasEnVertical(jugada.origen().consultarCoordenada());
 			if(distancia != numPiezas) jugadaLegal = false;
 		}
 		// Verticales
 		else {
 			distancia = consultor.consultarDistanciaEnVertical(jugada.origen().consultarCoordenada(), jugada.destino().consultarCoordenada());
-			numPiezas = consultor.consultarNumeroPiezasEnVertical(jugada.origen().consultarCoordenada());
+			numPiezas = consultor.consultarNumeroPiezasEnHorizontal(jugada.origen().consultarCoordenada());
 			if(distancia != numPiezas) jugadaLegal = false;			
 		}
 		
@@ -157,7 +249,7 @@ public class Arbitro {
 	}
 	
 	public boolean estaFinalizadaPartida() {
-		return false;
+		return this.consultarTurnoGanador() != null;
 	}
 
 	@Override
