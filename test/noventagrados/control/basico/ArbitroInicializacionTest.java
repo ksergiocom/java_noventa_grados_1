@@ -218,6 +218,10 @@ public class ArbitroInicializacionTest {
 		@DisplayName("Comprueba que la reina blanca está bien colocada.")
 		@Test
 		void comprobarColocacionDeReinaBlanca() {
+			// WTFFFFFFFFFfffffffffffffffff
+			// System.out.println(arbitro.consultarTablero().aTexto());
+			// System.out.println(tablero.aTexto());
+			
 			Celda celda = tablero.consultarCelda(new Coordenada(0, 0));
 			assertAll(
 					() -> assertThat("La reina blanca no está bien colocada.", 

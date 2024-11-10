@@ -2,6 +2,9 @@ package noventagrados.control;
 
 import noventagrados.modelo.Tablero;
 import noventagrados.modelo.Pieza;
+
+import java.util.Objects;
+
 import noventagrados.modelo.Jugada;
 
 import noventagrados.util.Color;
@@ -33,34 +36,62 @@ public class Arbitro {
 			this.tablero.colocar(piezaActual, coordenadaActual);
 		}
 		
+		//System.out.println(this.tablero.aTexto());
+		
 		return;
 	}
 	
-	public void colocarPiezasConfiguracionInicla() {
-		// LOL!!!!!!!!!! luego lo refactorizo si me siento con ganas
-		
-		// Colocar las piezas en la distribucion en la que vienen al principio de la partida
-		// [0,0] Reina blanca
-		Pieza piezaReinaBlanca = new Pieza(TipoPieza.REINA, Color.BLANCO);
-		Coordenada coordenadaReinaBlanca = new Coordenada(0,0);
+	/**
+	 * Una funcion que genera las piezas y coordenadas iniciale y las coloca en su posicoin inicial
+	 * Esto está pendiente de reducir y simplificar
+	 * 
+	 */
+	public void colocarPiezasConfiguracionInicial() {
+	    // Array para almacenar las piezas iniciales: 6 peones blancos, 6 peones negros, 1 reina blanca, 1 reina negra
+	    Pieza[] piezasGeneradas = new Pieza[14];
+	    // Array para las coordenadas de las piezas
+	    Coordenada[] coordenadasGeneradas = new Coordenada[14];
 
-		// [1,0] [2,0] [3,0] [0,1] [0,2] [0,3] Peones blancos
-		Pieza piezaPeonBlanco1 = new Pieza(TipoPieza.PEON, Color.BLANCO);
-		Pieza piezaPeonBlanco2 = new Pieza(TipoPieza.PEON, Color.BLANCO);
-		Pieza piezaPeonBlanco3 = new Pieza(TipoPieza.PEON, Color.BLANCO);
-		Pieza piezaPeonBlanco4 = new Pieza(TipoPieza.PEON, Color.BLANCO);
-		Pieza piezaPeonBlanco5 = new Pieza(TipoPieza.PEON, Color.BLANCO);
-		Pieza piezaPeonB = new Pieza(TipoPieza.PEON, Color.BLANCO);
-//		Coordenada coordenadaPeonBlanco1 = new Coordenada(0,)
-		
-		
-		// [6,6] Reina negra
-		// [6,6] [5,6] [4,6] [3,6] [6,5] [6,4] [6,3] Peones negros
-		
-		
-		
-		return;
+	    // Colocar la reina blanca en [0,0]
+	    piezasGeneradas[0] = new Pieza(TipoPieza.REINA, Color.BLANCO);
+	    coordenadasGeneradas[0] = new Coordenada(0, 0);
+
+	    // Colocar los peones blancos en posiciones cercanas a la esquina superior izquierda
+	    piezasGeneradas[1] = new Pieza(TipoPieza.PEON, Color.BLANCO);
+	    coordenadasGeneradas[1] = new Coordenada(1, 0);
+	    piezasGeneradas[2] = new Pieza(TipoPieza.PEON, Color.BLANCO);
+	    coordenadasGeneradas[2] = new Coordenada(2, 0);
+	    piezasGeneradas[3] = new Pieza(TipoPieza.PEON, Color.BLANCO);
+	    coordenadasGeneradas[3] = new Coordenada(3, 0);
+	    piezasGeneradas[4] = new Pieza(TipoPieza.PEON, Color.BLANCO);
+	    coordenadasGeneradas[4] = new Coordenada(0, 1);
+	    piezasGeneradas[5] = new Pieza(TipoPieza.PEON, Color.BLANCO);
+	    coordenadasGeneradas[5] = new Coordenada(0, 2);
+	    piezasGeneradas[6] = new Pieza(TipoPieza.PEON, Color.BLANCO);
+	    coordenadasGeneradas[6] = new Coordenada(0, 3);
+
+	    // Colocar la reina negra en [6,6]
+	    piezasGeneradas[7] = new Pieza(TipoPieza.REINA, Color.NEGRO);
+	    coordenadasGeneradas[7] = new Coordenada(6, 6);
+
+	    // Colocar los peones negros en posiciones cercanas a la esquina inferior derecha
+	    piezasGeneradas[8] = new Pieza(TipoPieza.PEON, Color.NEGRO);
+	    coordenadasGeneradas[8] = new Coordenada(5, 6);
+	    piezasGeneradas[9] = new Pieza(TipoPieza.PEON, Color.NEGRO);
+	    coordenadasGeneradas[9] = new Coordenada(4, 6);
+	    piezasGeneradas[10] = new Pieza(TipoPieza.PEON, Color.NEGRO);
+	    coordenadasGeneradas[10] = new Coordenada(3, 6);
+	    piezasGeneradas[11] = new Pieza(TipoPieza.PEON, Color.NEGRO);
+	    coordenadasGeneradas[11] = new Coordenada(6, 5);
+	    piezasGeneradas[12] = new Pieza(TipoPieza.PEON, Color.NEGRO);
+	    coordenadasGeneradas[12] = new Coordenada(6, 4);
+	    piezasGeneradas[13] = new Pieza(TipoPieza.PEON, Color.NEGRO);
+	    coordenadasGeneradas[13] = new Coordenada(6, 3);
+	    
+	    // Siempre empiezan blancas :)
+	    colocarPiezas(piezasGeneradas, coordenadasGeneradas, Color.BLANCO);
 	}
+
 	
 	public Caja consultarCaja(Color color) {
 		// Implementacion Dummy
@@ -72,7 +103,7 @@ public class Arbitro {
 	}
 	
 	public Tablero consultarTablero() {
-		return this.tablero;
+		return this.tablero.clonar();
 	}
 	
 	public Color consultarTurno() {
@@ -93,6 +124,29 @@ public class Arbitro {
 	
 	public boolean estaFinalizadaPartida() {
 		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(contadorJugadas, tablero, turno);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Arbitro other = (Arbitro) obj;
+		return contadorJugadas == other.contadorJugadas && Objects.equals(tablero, other.tablero)
+				&& turno == other.turno;
+	}
+
+	@Override
+	public String toString() {
+		return "Arbitro [tablero=" + tablero + ", contadorJugadas=" + contadorJugadas + ", turno=" + turno + "]";
 	}
 	
 	// Pendiente toString()
