@@ -10,28 +10,27 @@ public class Pieza {
 	// Atributos
 	Color color;
 	TipoPieza tipoPieza;
-	
+
 	public Pieza(TipoPieza tipoPieza, Color color) {
 		this.color = color;
 		this.tipoPieza = tipoPieza;
 	}
-	
+
 	public String aTexto() {
 		return "" + this.tipoPieza.toChar() + this.color.toChar();
 	}
-	
+
 	public Pieza clonar() {
 		return new Pieza(this.tipoPieza, this.color);
 	}
-	
+
 	public Color consultarColor() {
 		return this.color;
 	}
-	
+
 	public TipoPieza consultarTipoPieza() {
 		return this.tipoPieza;
 	}
-	
 
 	@Override
 	public int hashCode() {
@@ -54,5 +53,5 @@ public class Pieza {
 	public String toString() {
 		return "Pieza [color=" + color + ", tipoPieza=" + tipoPieza + "]";
 	}
-	
+
 }

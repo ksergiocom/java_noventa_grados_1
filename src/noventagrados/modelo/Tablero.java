@@ -92,7 +92,7 @@ public class Tablero {
 				// Voy a usar la combinacion de los dos para crear un indice plano
 				// i+j*7 (7 es el array length del interior)
 				int idx = i + j * this.tablero[i].length; // Todos son de 7 en realidad
-				arrayCeldas[idx] = this.tablero[i][j];
+				arrayCeldas[idx] = this.tablero[j][i].clonar();
 			}
 		}
 		
@@ -164,6 +164,6 @@ public class Tablero {
 	public String toString() {
 		return "Tablero [tablero=" + Arrays.toString(tablero) + "]";
 	}
-	
-	
+
+
 }

@@ -1,6 +1,7 @@
 package noventagrados.modelo;
 
 import java.util.Objects;
+import noventagrados.util.TipoPieza;
 
 import noventagrados.util.Color;
 import noventagrados.util.Coordenada;
@@ -45,7 +46,7 @@ public class Celda {
 	}
 	
 	public Pieza consultarPieza() {
-		return this.pieza;
+		return this.pieza.clonar();
 	}
 	
 	public void eliminarPieza() {
@@ -78,5 +79,6 @@ public class Celda {
 		return "Celda [coordenada=" + coordenada + ", pieza=" + pieza + "]";
 	}
 
+	
 
 }
