@@ -46,6 +46,7 @@ public class Celda {
 	}
 	
 	public Pieza consultarPieza() {
+		if(this.pieza == null) return null;
 		return this.pieza.clonar();
 	}
 	
