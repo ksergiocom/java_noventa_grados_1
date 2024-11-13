@@ -233,6 +233,12 @@ public class Arbitro {
 		// Si la coordenda de destino no esta en tablero, entonces es ilegal
 		if(!this.tablero.estaEnTablero(jugada.destino().consultarCoordenada())) jugadaLegal = false;
 		
+		// Coger la celda de origen, comprobar la pieza y si es del color del turno entonces ok, si no es ilegal
+		if(jugada.origen().consultarColorDePieza() != this.turno) jugadaLegal = false;
+		
+		// Turnos pares son Negras
+		if(this.turno == Color.BLANCO && this.contadorJugadas % 2 == 1) jugadaLegal = false;
+		
 		// Datos para comprobar si es legal
 		// Necesitas el TableroConsultor para el sentido
 		TableroConsultor consultor = new TableroConsultor(this.tablero);
