@@ -1,9 +1,22 @@
+# Práctica 1 - Noventa grados
 
+## Autores
+Víctor Acevedo Lorenzo
+Sergiy Khudoley
 
-fichero de texto, que contendrá los nombres y apellidos y las aclaraciones que el
-alumnado crea oportunas poner en conocimiento del profesorado.
-
-
-consultar y obtener es un bodrio de nombre. Haberlo llamado consultarClon!!!!!!!
-
-:)
+## Comentarios
+	1- Hemos realizado una modificación en el método de validarFormato de la clase NoventaGrados del paquete "textui" para
+	   prevenir un error en el caso de dar un string de menor tamaño al esperado. En este caso podía podía ocurrir un 
+	   StringIndexOutOfBoundsException.
+	   
+	2- El método empujar de la clase Árbitro se ha implementado de dos formas diferentes, una iterativa y otra recursiva. 
+       Mantenemos comentada una versión de la iterativa que utiliza un LinkedList a modo de pila FIFO para ordenar las 
+       piezas necesarias a empujar.
+       
+	3- El método configuraciónInicial de Árbitro se podría abreviar utilizando índices y bucles. Nos hemos ahorrado
+	   este para mayor claridad y simplicidad.
+	   
+	4- Hemos tenido bastante problemas con los consultar y obtener por no tener claro cual era el que clonaba y cual
+	   traia una referencia. Quizás fuese más sencillo para otra ocasión modificar el nombre a consultarClon, por ejemplo.
+	   
+## ¿Más cosas?
