@@ -59,9 +59,49 @@ public class NoventaGrados {
 	 * @param args argumentos de entrada en línea de comandos
 	 */
 	public static void main(String[] args) {
-		// COMPLETAR POR EL ALUMNADO
-		// REUTILIZAR AQUELLOS MÉTODOS YA PROPORCIONADOS QUE SEAN NECESARIOS
+	    inicializarPartida();
+	    mostrarMensajeBienvenida();
+	    mostrarTablero();
+
+	    while (true) {
+	        // Recoger jugada del usuario
+	        String textoJugada = recogerTextoDeJugadaPorTeclado();
+
+	        // Verificar si el usuario desea salir
+	        if (comprobarSalir(textoJugada)) {
+	            finalizarPartida();
+	            break; // Eliminar breaks y continues
+	        }
+
+	        // Validar el formato de la jugada
+	        if (!validarFormato(textoJugada)) {
+	            mostrarErrorEnFormatoDeEntrada();
+	            continue; // Eliminar breaks y continues
+	        }
+
+	        // Extraer y verificar la legalidad de la jugada
+	        Jugada jugada = extraerJugada(textoJugada);
+	        if (!esLegal(jugada)) {
+	            System.out.println("Jugada no legal. Intente nuevamente.");
+	            continue; // Eliminar breaks y continues
+	        }
+
+	        // Realizar la jugada y cambiar el turno
+	        realizarEmpujón(jugada);
+	        mostrarTablero();
+
+	        // Comprobar si la partida ha finalizado
+	        if (comprobarFinalizacionPartida()) {
+	            System.out.println("Ha ganado la partida el turno con piezas de color " + arbitro.consultarTurno());
+	            System.out.println("Partida finalizada.");
+	            break; // Eliminar breaks y continues
+	        }
+
+	        // Cambiar turno
+	        cambiarTurnoPartida();
+	    }
 	}
+
 
 	/**
 	 * Inicializa el estado de los elementos de la partida.
@@ -111,6 +151,11 @@ public class NoventaGrados {
 	 *         disponibles del tablero
 	 */
 	private static boolean validarFormato(String textoJugada) {
+	    // Si le paso cosas de tamaños puede fallar (Pj. con StringIndexOutOfBoundsException para el "02")
+	    if (textoJugada.length() != TAMAÑO_JUGADA) {
+	        return false;
+	    }
+		
 		// si la longitud es correcta y a la mitad hay un guion...
 		System.out.println(textoJugada.charAt(TAMAÑO_JUGADA / 2));
 		if (textoJugada.length() == TAMAÑO_JUGADA && textoJugada.charAt(TAMAÑO_JUGADA / 2) == '-') {
