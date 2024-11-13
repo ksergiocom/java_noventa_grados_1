@@ -1,5 +1,4 @@
 package noventagrados.textui;
-
 import java.util.Scanner;
 
 import noventagrados.control.Arbitro;
