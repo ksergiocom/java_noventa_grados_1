@@ -82,7 +82,7 @@ public class NoventaGrados {
 	        // Extraer y verificar la legalidad de la jugada
 	        Jugada jugada = extraerJugada(textoJugada);
 	        if (!esLegal(jugada)) {
-	            System.out.println("Jugada no legal. Intente nuevamente.");
+	        	mostrarErrorPorMovimientoIlegal("(me da pereza sacar el mensaje)");
 	            continue; // Eliminar breaks y continues
 	        }
 
@@ -92,7 +92,7 @@ public class NoventaGrados {
 
 	        // Comprobar si la partida ha finalizado
 	        if (comprobarFinalizacionPartida()) {
-	            System.out.println("Ha ganado la partida el turno con piezas de color " + arbitro.consultarTurno());
+	        	mostrarGanador();
 	            System.out.println("Partida finalizada.");
 	            break; // Eliminar breaks y continues
 	        }

@@ -1,0 +1,9 @@
+
+
+fichero de texto, que contendrá los nombres y apellidos y las aclaraciones que el
+alumnado crea oportunas poner en conocimiento del profesorado.
+
+
+consultar y obtener es un bodrio de nombre. Haberlo llamado consultarClon!!!!!!!
+
+:)

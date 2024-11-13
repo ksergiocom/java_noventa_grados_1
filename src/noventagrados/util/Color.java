@@ -11,7 +11,7 @@ public enum Color {
 	}
 	
 	public Color consultarContrario() {
-		return this.color == 'B' ? this.NEGRO : this.BLANCO;
+		return this.color == 'B' ? Color.NEGRO : Color.BLANCO;
 	}
 	
 	public char toChar() {

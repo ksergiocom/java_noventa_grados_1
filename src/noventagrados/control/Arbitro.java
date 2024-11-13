@@ -4,7 +4,6 @@ import noventagrados.modelo.Tablero;
 import noventagrados.modelo.Pieza;
 
 import java.util.Objects;
-import java.util.LinkedList; // LOL lo usamos como una pila
 
 import noventagrados.modelo.Celda;
 import noventagrados.modelo.Jugada;
@@ -20,7 +19,7 @@ public class Arbitro {
 	private Color turno;
 	private Caja cajaNegra;
 	private Caja cajaBlanca;
-	
+
 	public Arbitro(Tablero tablero) {
 		this.tablero = tablero;
 		this.contadorJugadas = 0;
@@ -28,139 +27,143 @@ public class Arbitro {
 		this.cajaNegra = new Caja(Color.NEGRO);
 		this.cajaBlanca = new Caja(Color.BLANCO);
 	}
-	
+
 	public void cambiarTurno() {
-		if(this.turno == Color.BLANCO) {
-			this.turno = Color.NEGRO;	
-		}
-		else{
+		if (this.turno == Color.BLANCO) {
+			this.turno = Color.NEGRO;
+		} else {
 			this.turno = Color.BLANCO;
-		} 
+		}
 	}
-	
+
 	public void colocarPiezas(Pieza[] piezas, Coordenada[] coordenadas, Color turnoActual) {
 		this.turno = turnoActual;
-		// Vamos a considerar que las piezas y las coordenadas vienen emparejadas 1 a 1 en los arrays
-		for(int i=0; i<piezas.length; i++) {
+		// Vamos a considerar que las piezas y las coordenadas vienen emparejadas 1 a 1
+		// en los arrays
+		for (int i = 0; i < piezas.length; i++) {
 			Pieza piezaActual = piezas[i];
 			Coordenada coordenadaActual = coordenadas[i];
 			this.tablero.colocar(piezaActual, coordenadaActual);
 		}
-		
-		//System.out.println(this.tablero.aTexto());
-		
+
+		// System.out.println(this.tablero.aTexto());
+
 		return;
 	}
-	
+
 	/**
-	 * Una funcion que genera las piezas y coordenadas iniciale y las coloca en su posicoin inicial
-	 * Esto está pendiente de reducir y simplificar
+	 * Una funcion que genera las piezas y coordenadas iniciale y las coloca en su
+	 * posicoin inicial Esto está pendiente de reducir y simplificar
 	 * 
 	 */
 	public void colocarPiezasConfiguracionInicial() {
-	    // Array para almacenar las piezas iniciales: 6 peones blancos, 6 peones negros, 1 reina blanca, 1 reina negra
-	    Pieza[] piezasGeneradas = new Pieza[14];
-	    // Array para las coordenadas de las piezas
-	    Coordenada[] coordenadasGeneradas = new Coordenada[14];
+		// Array para almacenar las piezas iniciales: 6 peones blancos, 6 peones negros,
+		// 1 reina blanca, 1 reina negra
+		Pieza[] piezasGeneradas = new Pieza[14];
+		// Array para las coordenadas de las piezas
+		Coordenada[] coordenadasGeneradas = new Coordenada[14];
 
-	    // Colocar la reina blanca en [0,0]
-	    piezasGeneradas[0] = new Pieza(TipoPieza.REINA, Color.BLANCO);
-	    coordenadasGeneradas[0] = new Coordenada(0, 0);
+		// Colocar la reina blanca en [0,0]
+		piezasGeneradas[0] = new Pieza(TipoPieza.REINA, Color.BLANCO);
+		coordenadasGeneradas[0] = new Coordenada(0, 0);
 
-	    // Colocar los peones blancos en posiciones cercanas a la esquina superior izquierda
-	    piezasGeneradas[1] = new Pieza(TipoPieza.PEON, Color.BLANCO);
-	    coordenadasGeneradas[1] = new Coordenada(1, 0);
-	    piezasGeneradas[2] = new Pieza(TipoPieza.PEON, Color.BLANCO);
-	    coordenadasGeneradas[2] = new Coordenada(2, 0);
-	    piezasGeneradas[3] = new Pieza(TipoPieza.PEON, Color.BLANCO);
-	    coordenadasGeneradas[3] = new Coordenada(3, 0);
-	    piezasGeneradas[4] = new Pieza(TipoPieza.PEON, Color.BLANCO);
-	    coordenadasGeneradas[4] = new Coordenada(0, 1);
-	    piezasGeneradas[5] = new Pieza(TipoPieza.PEON, Color.BLANCO);
-	    coordenadasGeneradas[5] = new Coordenada(0, 2);
-	    piezasGeneradas[6] = new Pieza(TipoPieza.PEON, Color.BLANCO);
-	    coordenadasGeneradas[6] = new Coordenada(0, 3);
+		// Colocar los peones blancos en posiciones cercanas a la esquina superior
+		// izquierda
+		piezasGeneradas[1] = new Pieza(TipoPieza.PEON, Color.BLANCO);
+		coordenadasGeneradas[1] = new Coordenada(1, 0);
+		piezasGeneradas[2] = new Pieza(TipoPieza.PEON, Color.BLANCO);
+		coordenadasGeneradas[2] = new Coordenada(2, 0);
+		piezasGeneradas[3] = new Pieza(TipoPieza.PEON, Color.BLANCO);
+		coordenadasGeneradas[3] = new Coordenada(3, 0);
+		piezasGeneradas[4] = new Pieza(TipoPieza.PEON, Color.BLANCO);
+		coordenadasGeneradas[4] = new Coordenada(0, 1);
+		piezasGeneradas[5] = new Pieza(TipoPieza.PEON, Color.BLANCO);
+		coordenadasGeneradas[5] = new Coordenada(0, 2);
+		piezasGeneradas[6] = new Pieza(TipoPieza.PEON, Color.BLANCO);
+		coordenadasGeneradas[6] = new Coordenada(0, 3);
 
-	    // Colocar la reina negra en [6,6]
-	    piezasGeneradas[7] = new Pieza(TipoPieza.REINA, Color.NEGRO);
-	    coordenadasGeneradas[7] = new Coordenada(6, 6);
+		// Colocar la reina negra en [6,6]
+		piezasGeneradas[7] = new Pieza(TipoPieza.REINA, Color.NEGRO);
+		coordenadasGeneradas[7] = new Coordenada(6, 6);
 
-	    // Colocar los peones negros en posiciones cercanas a la esquina inferior derecha
-	    piezasGeneradas[8] = new Pieza(TipoPieza.PEON, Color.NEGRO);
-	    coordenadasGeneradas[8] = new Coordenada(5, 6);
-	    piezasGeneradas[9] = new Pieza(TipoPieza.PEON, Color.NEGRO);
-	    coordenadasGeneradas[9] = new Coordenada(4, 6);
-	    piezasGeneradas[10] = new Pieza(TipoPieza.PEON, Color.NEGRO);
-	    coordenadasGeneradas[10] = new Coordenada(3, 6);
-	    piezasGeneradas[11] = new Pieza(TipoPieza.PEON, Color.NEGRO);
-	    coordenadasGeneradas[11] = new Coordenada(6, 5);
-	    piezasGeneradas[12] = new Pieza(TipoPieza.PEON, Color.NEGRO);
-	    coordenadasGeneradas[12] = new Coordenada(6, 4);
-	    piezasGeneradas[13] = new Pieza(TipoPieza.PEON, Color.NEGRO);
-	    coordenadasGeneradas[13] = new Coordenada(6, 3);
-	    
-	    // Siempre empiezan blancas :)
-	    colocarPiezas(piezasGeneradas, coordenadasGeneradas, Color.BLANCO);
+		// Colocar los peones negros en posiciones cercanas a la esquina inferior
+		// derecha
+		piezasGeneradas[8] = new Pieza(TipoPieza.PEON, Color.NEGRO);
+		coordenadasGeneradas[8] = new Coordenada(5, 6);
+		piezasGeneradas[9] = new Pieza(TipoPieza.PEON, Color.NEGRO);
+		coordenadasGeneradas[9] = new Coordenada(4, 6);
+		piezasGeneradas[10] = new Pieza(TipoPieza.PEON, Color.NEGRO);
+		coordenadasGeneradas[10] = new Coordenada(3, 6);
+		piezasGeneradas[11] = new Pieza(TipoPieza.PEON, Color.NEGRO);
+		coordenadasGeneradas[11] = new Coordenada(6, 5);
+		piezasGeneradas[12] = new Pieza(TipoPieza.PEON, Color.NEGRO);
+		coordenadasGeneradas[12] = new Coordenada(6, 4);
+		piezasGeneradas[13] = new Pieza(TipoPieza.PEON, Color.NEGRO);
+		coordenadasGeneradas[13] = new Coordenada(6, 3);
+
+		// Siempre empiezan blancas :)
+		colocarPiezas(piezasGeneradas, coordenadasGeneradas, Color.BLANCO);
 	}
 
-	
 	public Caja consultarCaja(Color color) {
-		if(color == Color.BLANCO) {
+		if (color == Color.BLANCO) {
 			return this.cajaBlanca;
-		}else {
+		} else {
 			return this.cajaNegra;
 		}
 	}
-	
+
 	public int consultarNumeroJugada() {
 		return this.contadorJugadas;
 	}
-	
+
 	public Tablero consultarTablero() {
 		return this.tablero.clonar();
 	}
-	
+
 	public Color consultarTurno() {
 		return this.turno;
 	}
-	
+
 	public Color consultarTurnoGanador() {
 		Color colorDevuelto = null;
-		
-		//Si reina llega a centro (3,3) gana ese color
-		Coordenada coordenadaCentro = new Coordenada(3,3);
+
+		// Si reina llega a centro (3,3) gana ese color
+		Coordenada coordenadaCentro = new Coordenada(3, 3);
 		Celda celdaCentral = this.tablero.obtenerCelda(coordenadaCentro);
 		Pieza piezaCentral = celdaCentral.consultarPieza();
-		
+
 		// Comprobamos si hay una pieza en el centro
-		if(piezaCentral != null) {
+		if (piezaCentral != null) {
 			boolean piezaCentralEsReina = piezaCentral.consultarTipoPieza() == TipoPieza.REINA;
 			Color colorPiezaCentral = piezaCentral.consultarColor();
-			
-			if(piezaCentralEsReina	&& colorPiezaCentral == Color.BLANCO) {
+
+			if (piezaCentralEsReina && colorPiezaCentral == Color.BLANCO) {
 				colorDevuelto = Color.BLANCO;
 			}
-			
-			if(piezaCentralEsReina	&& colorPiezaCentral == Color.NEGRO) {
+
+			if (piezaCentralEsReina && colorPiezaCentral == Color.NEGRO) {
 				colorDevuelto = Color.NEGRO;
-			}			
+			}
 		}
-		
-		
-		//Si la reina esta fuera de tablero gana el color contrario
-		if(this.cajaBlanca.contarPiezas(TipoPieza.REINA) > 0 && this.cajaNegra.contarPiezas(TipoPieza.REINA) > 0) colorDevuelto = null;
-		else if(this.cajaNegra.contarPiezas(TipoPieza.REINA) > 0) colorDevuelto = Color.BLANCO;
-		else if(this.cajaBlanca.contarPiezas(TipoPieza.REINA) > 0) colorDevuelto = Color.NEGRO;
-		
-		
+
+		// Si la reina esta fuera de tablero gana el color contrario
+		if (this.cajaBlanca.contarPiezas(TipoPieza.REINA) > 0 && this.cajaNegra.contarPiezas(TipoPieza.REINA) > 0)
+			colorDevuelto = null;
+		else if (this.cajaNegra.contarPiezas(TipoPieza.REINA) > 0)
+			colorDevuelto = Color.BLANCO;
+		else if (this.cajaBlanca.contarPiezas(TipoPieza.REINA) > 0)
+			colorDevuelto = Color.NEGRO;
+
 		return colorDevuelto;
 	}
-	
+
 	public void empujar(Jugada jugada) {
 		mover(jugada.origen().consultarCoordenada(), jugada.destino().consultarCoordenada());
 		this.contadorJugadas++;
 		
-//				TableroConsultor consultor = new TableroConsultor(this.tablero);
+		// Version iterativa usando una pila FIFO para recoger y colocar las piezas
+//		TableroConsultor consultor = new TableroConsultor(this.tablero);
 //		LinkedList<Pieza> almacenPiezas = new LinkedList<Pieza>();
 //		Celda celdaOrigen = jugada.origen();
 //		Celda celdaDestino = jugada.destino();		
@@ -226,52 +229,64 @@ public class Arbitro {
 //		
 //		return;
 	}
-	
+
 	public boolean esMovimientoLegal(Jugada jugada) {
 		boolean jugadaLegal = true;
-		
+
 		// Si la coordenda de destino no esta en tablero, entonces es ilegal
-		if(!this.tablero.estaEnTablero(jugada.destino().consultarCoordenada())) jugadaLegal = false;
-		
-		// Coger la celda de origen, comprobar la pieza y si es del color del turno entonces ok, si no es ilegal
-		if(jugada.origen().consultarColorDePieza() != this.turno) jugadaLegal = false;
-		
+		if (!this.tablero.estaEnTablero(jugada.destino().consultarCoordenada()))
+			jugadaLegal = false;
+
+		// Coger la celda de origen, comprobar la pieza y si es del color del turno
+		// entonces ok, si no es ilegal
+		if (jugada.origen().consultarColorDePieza() != this.turno)
+			jugadaLegal = false;
+
 		// Turnos pares son Negras
-		if(this.turno == Color.BLANCO && this.contadorJugadas % 2 == 1) jugadaLegal = false;
-		
+		if (this.turno == Color.BLANCO && this.contadorJugadas % 2 == 1)
+			jugadaLegal = false;
+
 		// Datos para comprobar si es legal
 		// Necesitas el TableroConsultor para el sentido
 		TableroConsultor consultor = new TableroConsultor(this.tablero);
-		Sentido sentido = consultor.calcularSentido(jugada.origen().consultarCoordenada(), jugada.destino().consultarCoordenada());
+		Sentido sentido = consultor.calcularSentido(jugada.origen().consultarCoordenada(),
+				jugada.destino().consultarCoordenada());
 		int distancia;
 		int numPiezas;
-		
+
 		// Horizontales
-		if(sentido == Sentido.HORIZONTAL_E || sentido == Sentido.HORIZONTAL_O) {
-			distancia = consultor.consultarDistanciaEnHorizontal(jugada.origen().consultarCoordenada(), jugada.destino().consultarCoordenada());
+		if (sentido == Sentido.HORIZONTAL_E || sentido == Sentido.HORIZONTAL_O) {
+			distancia = consultor.consultarDistanciaEnHorizontal(jugada.origen().consultarCoordenada(),
+					jugada.destino().consultarCoordenada());
 			numPiezas = consultor.consultarNumeroPiezasEnVertical(jugada.origen().consultarCoordenada());
-			if(distancia != numPiezas) jugadaLegal = false;
+			if (distancia != numPiezas)
+				jugadaLegal = false;
 		}
 		// Verticales
 		else {
-			distancia = consultor.consultarDistanciaEnVertical(jugada.origen().consultarCoordenada(), jugada.destino().consultarCoordenada());
+			distancia = consultor.consultarDistanciaEnVertical(jugada.origen().consultarCoordenada(),
+					jugada.destino().consultarCoordenada());
 			numPiezas = consultor.consultarNumeroPiezasEnHorizontal(jugada.origen().consultarCoordenada());
-			if(distancia != numPiezas) jugadaLegal = false;			
+			if (distancia != numPiezas)
+				jugadaLegal = false;
 		}
-		
+
 		return jugadaLegal;
 	}
-	
+
 	public boolean estaFinalizadaPartida() {
 		boolean estaTerminada = false;
-		
-		// Se finaliza si hay reina en el centro o hay alguna reina en cualquiera de las dos cajas		
+
+		// Se finaliza si hay reina en el centro o hay alguna reina en cualquiera de las
+		// dos cajas
 		TableroConsultor consultor = new TableroConsultor(this.tablero);
-		
-		if(!consultor.hayReina(Color.BLANCO) || !consultor.hayReina(Color.NEGRO)) estaTerminada = true;
-		
-		if(consultor.estaReinaEnElCentro(Color.BLANCO) || consultor.estaReinaEnElCentro(Color.NEGRO)) estaTerminada=true;
-		
+
+		if (!consultor.hayReina(Color.BLANCO) || !consultor.hayReina(Color.NEGRO))
+			estaTerminada = true;
+
+		if (consultor.estaReinaEnElCentro(Color.BLANCO) || consultor.estaReinaEnElCentro(Color.NEGRO))
+			estaTerminada = true;
+
 		return estaTerminada;
 	}
 
@@ -297,58 +312,56 @@ public class Arbitro {
 	public String toString() {
 		return "Arbitro [tablero=" + tablero + ", contadorJugadas=" + contadorJugadas + ", turno=" + turno + "]";
 	}
-	
+
 	private void mover(Coordenada origen, Coordenada destino) {
-	    // Util para determinar el movimiento
-	    TableroConsultor consultor = new TableroConsultor(this.tablero);
+		// Util para determinar el movimiento
+		TableroConsultor consultor = new TableroConsultor(this.tablero);
 
-	    // Calcular el sentido del movimiento basado en origen y destino
-	    Sentido sentido = consultor.calcularSentido(origen, destino);
-	    
-	    // Definir la siguiente coordenada en la dirección del sentido
-	    Coordenada siguienteCoordenada = new Coordenada(
-	        origen.fila() + sentido.consultarDesplazamientoEnFilas(),
-	        origen.columna() + sentido.consultarDesplazamientoEnColumnas()
-	    );
-	    
-	    Celda celdaOrigen = this.tablero.obtenerCelda(origen);
-	    
-	    // Clonar y eliminar la pieza de la celda de origen
-	    Pieza piezaClonada = celdaOrigen.consultarPieza();
-	    celdaOrigen.eliminarPieza();
+		// Calcular el sentido del movimiento basado en origen y destino
+		Sentido sentido = consultor.calcularSentido(origen, destino);
 
-	    // Comprobar si la siguiente coordenada está fuera del tablero
-	    if (!this.tablero.estaEnTablero(siguienteCoordenada)) {
-	        // Si está fuera, añadir a la caja correspondiente y terminar
-	        if (piezaClonada.consultarColor() == Color.BLANCO) {
-	            this.cajaBlanca.añadir(piezaClonada);
-	        } else {
-	            this.cajaNegra.añadir(piezaClonada);
-	        }
-	        return;
-	    }
-	    
-	    Celda celdaSiguiente = this.tablero.obtenerCelda(siguienteCoordenada);
+		// Definir la siguiente coordenada en la dirección del sentido
+		Coordenada siguienteCoordenada = new Coordenada(origen.fila() + sentido.consultarDesplazamientoEnFilas(),
+				origen.columna() + sentido.consultarDesplazamientoEnColumnas());
 
-	    // Si la celda siguiente no está vacía, empujar la pieza que está allí
-	    if (!celdaSiguiente.estaVacia()) {
-	        // Empuja la pieza en `celdaSiguiente` a la siguiente posición en el mismo sentido
-	        mover(celdaSiguiente.consultarCoordenada(), new Coordenada(
-	            siguienteCoordenada.fila() + sentido.consultarDesplazamientoEnFilas(),
-	            siguienteCoordenada.columna() + sentido.consultarDesplazamientoEnColumnas()
-	        ));
-	    }
-	    
-	    // Colocar la pieza clonada en la celda siguiente
-	    celdaSiguiente.colocar(piezaClonada);
+		Celda celdaOrigen = this.tablero.obtenerCelda(origen);
 
-	    // Condición de parada: si hemos alcanzado el destino, terminamos
-	    if (siguienteCoordenada.equals(destino)) {
-	        return;
-	    }
+		// Clonar y eliminar la pieza de la celda de origen
+		Pieza piezaClonada = celdaOrigen.consultarPieza();
+		celdaOrigen.eliminarPieza();
 
-	    // Llamada recursiva para avanzar hacia el destino
-	    mover(siguienteCoordenada, destino);
+		// Comprobar si la siguiente coordenada está fuera del tablero
+		if (!this.tablero.estaEnTablero(siguienteCoordenada)) {
+			// Si está fuera, añadir a la caja correspondiente y terminar
+			if (piezaClonada.consultarColor() == Color.BLANCO) {
+				this.cajaBlanca.añadir(piezaClonada);
+			} else {
+				this.cajaNegra.añadir(piezaClonada);
+			}
+			return;
+		}
+
+		Celda celdaSiguiente = this.tablero.obtenerCelda(siguienteCoordenada);
+
+		// Si la celda siguiente no está vacía, empujar la pieza que está allí
+		if (!celdaSiguiente.estaVacia()) {
+			// Empuja la pieza en `celdaSiguiente` a la siguiente posición en el mismo
+			// sentido
+			mover(celdaSiguiente.consultarCoordenada(),
+					new Coordenada(siguienteCoordenada.fila() + sentido.consultarDesplazamientoEnFilas(),
+							siguienteCoordenada.columna() + sentido.consultarDesplazamientoEnColumnas()));
+		}
+
+		// Colocar la pieza clonada en la celda siguiente
+		celdaSiguiente.colocar(piezaClonada);
+
+		// Condición de parada: si hemos alcanzado el destino, terminamos
+		if (siguienteCoordenada.equals(destino)) {
+			return;
+		}
+
+		// Llamada recursiva para avanzar hacia el destino
+		mover(siguienteCoordenada, destino);
 	}
 
 }
