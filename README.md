@@ -1,8 +1,9 @@
 # Práctica 1 - Noventa grados
 
 ## Autores
-Víctor Acevedo Lorenzo
-Sergiy Khudoley
+**Víctor Acevedo Lorenzo**
+
+**Sergiy Khudoley**
 
 ## Comentarios sobre el código
 	1- Hemos realizado una modificación en el método de validarFormato de la clase NoventaGrados del paquete "textui" para
