@@ -62,44 +62,41 @@ public class NoventaGrados {
 	    mostrarMensajeBienvenida();
 	    mostrarTablero();
 
-	    while (true) {
-	        // Recoger jugada del usuario
-	        String textoJugada = recogerTextoDeJugadaPorTeclado();
+	    boolean partidaEnCurso = true;
 
-	        // Verificar si el usuario desea salir
+	    /*
+	     * Si pudiesemos usar breaks y continues podríamos evitar tanto código anidado.
+	     * Me resulta más legible crear condiciones a un solo nivel con los if's, pero 
+	     * debido a los requirimientos lo hacemos así.
+	     */
+	    
+	    while (partidaEnCurso) {
+	        String textoJugada = recogerTextoDeJugadaPorTeclado();
 	        if (comprobarSalir(textoJugada)) {
 	            finalizarPartida();
-	            break; // Eliminar breaks y continues
-	        }
-
-	        // Validar el formato de la jugada
-	        if (!validarFormato(textoJugada)) {
+	            partidaEnCurso = false;
+	        } else if (!validarFormato(textoJugada)) { 
 	            mostrarErrorEnFormatoDeEntrada();
-	            continue; // Eliminar breaks y continues
+	        } else {
+	            Jugada jugada = extraerJugada(textoJugada);
+
+	            if (!esLegal(jugada)) {
+	                mostrarErrorPorMovimientoIlegal("(me da pereza sacar el mensaje)");
+	            } else {
+	                realizarEmpujón(jugada);
+	                mostrarTablero();
+
+	                if (comprobarFinalizacionPartida()) {
+	                    mostrarGanador();
+	                    partidaEnCurso = false;
+	                } else {
+	                    cambiarTurnoPartida();
+	                }
+	            }
 	        }
-
-	        // Extraer y verificar la legalidad de la jugada
-	        Jugada jugada = extraerJugada(textoJugada);
-	        if (!esLegal(jugada)) {
-	        	mostrarErrorPorMovimientoIlegal("(me da pereza sacar el mensaje)");
-	            continue; // Eliminar breaks y continues
-	        }
-
-	        // Realizar la jugada y cambiar el turno
-	        realizarEmpujón(jugada);
-	        mostrarTablero();
-
-	        // Comprobar si la partida ha finalizado
-	        if (comprobarFinalizacionPartida()) {
-	        	mostrarGanador();
-	            System.out.println("Partida finalizada.");
-	            break; // Eliminar breaks y continues
-	        }
-
-	        // Cambiar turno
-	        cambiarTurnoPartida();
 	    }
 	}
+
 
 
 	/**
