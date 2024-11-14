@@ -13,12 +13,33 @@ import noventagrados.util.Coordenada;
 import noventagrados.util.TipoPieza;
 import noventagrados.util.Sentido;
 
+/**
+ * Creamos una clase pública llamada Arbitro que tendrá los atributos de clase,
+ * tablero, contadorJuegadas, turnom cajaNegra, cajaBlanca
+ * 
+ * @author Sergio Sergiy Khudoley
+ * @author Víctor Acevedo Lorenzo
+ * @version 1.0
+ * @since 1.0
+ * 
+ */
+
 public class Arbitro {
 	private Tablero tablero;
 	private int contadorJugadas;
 	private Color turno;
 	private Caja cajaNegra;
 	private Caja cajaBlanca;
+
+	/**
+	 * Creamos el constructor Arbitro que inicializa una instancia de arbitro usando
+	 * un tablero como parámetro dicho parámetro se asigna a la variable tablero de
+	 * la nueva instancia, el contador de jugadas se inicializa a cero, el turno se
+	 * inicializa a null y en los atributos cajaNegra y cajaBlanca, se crea una
+	 * instancia de tipo caja con el color respectivo
+	 * 
+	 * @param Tablero El tablero que usamos para crear la instanci ade Árbitro
+	 */
 
 	public Arbitro(Tablero tablero) {
 		this.tablero = tablero;
@@ -28,6 +49,10 @@ public class Arbitro {
 		this.cajaBlanca = new Caja(Color.BLANCO);
 	}
 
+	/**
+	 * Creamos el método cambiarTurno() el cual cambia el turno al otro contrincante
+	 */
+
 	public void cambiarTurno() {
 		if (this.turno == Color.BLANCO) {
 			this.turno = Color.NEGRO;
@@ -35,6 +60,19 @@ public class Arbitro {
 			this.turno = Color.BLANCO;
 		}
 	}
+
+	/**
+	 * Este método recibe dos arrays: uno de piezas y otro de coordenadas, y coloca
+	 * cada pieza en su correspondiente posición del tablero, basada en las
+	 * coordenadas proporcionadas. Además, establece el turno actual al color
+	 * indicado.
+	 * 
+	 * @param piezas      Un array de piezas que se deben colocar en el tablero.
+	 * @param coordenadas Un array de coordenadas correspondientes a las posiciones
+	 *                    de las piezas.
+	 * @param turnoActual El color que representa el turno actual (puede ser blanco
+	 *                    o negro)
+	 */
 
 	public void colocarPiezas(Pieza[] piezas, Coordenada[] coordenadas, Color turnoActual) {
 		this.turno = turnoActual;
@@ -52,9 +90,9 @@ public class Arbitro {
 	}
 
 	/**
-	 * Una funcion que genera las piezas y coordenadas iniciale y las coloca en su
-	 * posicoin inicial Esto está pendiente de reducir y simplificar
-	 * 
+	 * El método colocarPiezasConfiguracionInicial coloca las piezas
+	 * correspondientes a la configuración de inicio del juego e inicializando
+	 * siempre el turno para el atacante con piezas blancas.
 	 */
 	public void colocarPiezasConfiguracionInicial() {
 		// Array para almacenar las piezas iniciales: 6 peones blancos, 6 peones negros,
@@ -105,6 +143,15 @@ public class Arbitro {
 		colocarPiezas(piezasGeneradas, coordenadasGeneradas, Color.BLANCO);
 	}
 
+	/**
+	 * Creamos el método consultarCaja. Que usa como parámetro color, este método
+	 * nos devolverá el atributo de clase del arbitro que contenga el objeto caja
+	 * del color que se haya indicado en el parámetro
+	 * 
+	 * @param color Color de la caja que queremos que nos devuelva
+	 * @return Caja El objeto caja del color indicado
+	 */
+
 	public Caja consultarCaja(Color color) {
 		if (color == Color.BLANCO) {
 			return this.cajaBlanca;
@@ -113,18 +160,46 @@ public class Arbitro {
 		}
 	}
 
+	/**
+	 * Creamos el método consultarNumeroJugadas el cuál nos devolvera un entero que
+	 * indique el número de jugadas realizadas hasta el momento
+	 * 
+	 * @return contadorJugadas Número de jugadas realizadas hasta el momento
+	 */
+
 	public int consultarNumeroJugada() {
 		return this.contadorJugadas;
 	}
+
+	/**
+	 * Creamos el método consultarTablero el cuál nos devolvera un clon en
+	 * profundidad del tablero actual
+	 * 
+	 * @return clonTablero Clon en profundidad del tablero actual
+	 */
 
 	public Tablero consultarTablero() {
 		return this.tablero.clonar();
 	}
 
+	/**
+	 * Creamos el método consultarTurno que consulta el turno actual del juego y
+	 * devuelve el color del jugador que puede realizar la siguiente jugada
+	 * 
+	 * @return Color Color del juegador que puede realizar la siguiente jugada
+	 * 
+	 */
 	public Color consultarTurno() {
 		return this.turno;
 	}
 
+	/**
+	 * Creamos el método consultarTurnoGanador() que devuelve el turno del ganador
+	 * actual o null si no hay ganador.
+	 * 
+	 * @return colorDevuelto Color del ganador actual o null en caso de que no haya
+	 *         ganador o haya empate
+	 */
 	public Color consultarTurnoGanador() {
 		Color colorDevuelto = null;
 
@@ -161,7 +236,7 @@ public class Arbitro {
 	public void empujar(Jugada jugada) {
 		mover(jugada.origen().consultarCoordenada(), jugada.destino().consultarCoordenada());
 		this.contadorJugadas++;
-		
+
 		// Version iterativa usando una pila FIFO para recoger y colocar las piezas
 //		TableroConsultor consultor = new TableroConsultor(this.tablero);
 //		LinkedList<Pieza> almacenPiezas = new LinkedList<Pieza>();
@@ -230,6 +305,15 @@ public class Arbitro {
 //		return;
 	}
 
+	/**
+	 * El método esMovimientoLegal si la jugada que pasemos por parámetro es legal o
+	 * no. Devuelve una variable de tipo boolean que será true en caso de que la
+	 * jugada sea legal y false en caso de que la jugada no sea legal
+	 * 
+	 * @return jugadaLegal Devuelve True si la jugada es legal y False si la jugada
+	 *         no es legal
+	 */
+
 	public boolean esMovimientoLegal(Jugada jugada) {
 		boolean jugadaLegal = true;
 
@@ -274,6 +358,15 @@ public class Arbitro {
 		return jugadaLegal;
 	}
 
+	/**
+	 * El método estaFinalizadaPartida comprueba si se da cualquiera de las
+	 * condiciones de finalización actualmente Creamos una variable de tipo boolean
+	 * que devulve true si la partida ha finalizado y false si la partida sigue en
+	 * marcha
+	 * 
+	 * @return estaTerminada Devuelve true si la partida ha terminado y false si la
+	 *         partida continúa
+	 */
 	public boolean estaFinalizadaPartida() {
 		boolean estaTerminada = false;
 

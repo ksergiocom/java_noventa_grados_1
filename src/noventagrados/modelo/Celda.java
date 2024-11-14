@@ -5,7 +5,7 @@ import noventagrados.util.Color;
 import noventagrados.util.Coordenada;
 
 /**
- * Creamosuna clase pública llamada celda que tendrá los atributos de clase,
+ * Creamos una clase pública llamada celda que tendrá los atributos de clase,
  * coordenada de tipo coordenada y pieza de tipo pieza.
  * 
  * @author Sergio Sergiy Khudoley
@@ -32,7 +32,7 @@ public class Celda {
 
 	/**
 	 * Creamos el método clonar que crea y devuelve el clon en profundidad de la
-	 * celda celda
+	 * celda 
 	 * 
 	 * @return celdaClon Clon en profundidad de la celda
 	 */
