@@ -147,13 +147,7 @@ public class NoventaGrados {
 	 *         disponibles del tablero
 	 */
 	private static boolean validarFormato(String textoJugada) {
-	    // Si le paso cosas de tamaños puede fallar (Pj. con StringIndexOutOfBoundsException para el "02")
-	    if (textoJugada.length() != TAMAÑO_JUGADA) {
-	        return false;
-	    }
-		
-		// si la longitud es correcta y a la mitad hay un guion...
-		System.out.println(textoJugada.charAt(TAMAÑO_JUGADA / 2));
+		// Si la longitud es correcta y a la mitad hay un guion...
 		if (textoJugada.length() == TAMAÑO_JUGADA && textoJugada.charAt(TAMAÑO_JUGADA / 2) == '-') {
 			// acabar de validar dígitos en el resto de valores...
 			String origen = textoJugada.substring(0, INICIO_COORDENADA_DESTINO);
