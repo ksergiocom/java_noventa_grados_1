@@ -10,43 +10,50 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * Creamos una clase pública llamada Caja que tendrá los atributos de clase,
- * color de tipo color y piezas de tipo pieza. El atributo color indicará el
- * color de la caja y el atributo piezas será un array de piezas que almacenará
- * las piezas que haya en la caja
+ * Es un contenedor que almacenará las piezas que se salen del tablero para un determinado color.
  * 
- * @author Sergio Sergiy Khudoley
+ * Contiene la lógica necesaria para agregar y contar las piezas que contiene.
+ * 
  * @author Víctor Acevedo Lorenzo
+ * @author Sergiy Khudoley
  * @version 1.0
- * @since 1.0
  * 
  */
-
 public class Caja {
+	/**
+	 * El color de la caja actual.
+	 * 
+	 * @see noventagrados.util.Color
+	 */
 	private Color color;
+	
+	/**
+	 * Piezas contenidas en la caja.
+	 * 
+	 * @see noventagrados.modelo.Pieza
+	 */
 	private Pieza[] piezas;
 
 	/**
-	 * Creamos el constructor Caja que inicializa una caja con un color específico y
-	 * un array para almacenará las piezas. Inicializamos el array con 7 piezas, ya
-	 * que solo habrá siete piezas de cada color
+	 * Inicializa una caja con un color específico y
+	 * un array para almacenará las piezas.
+	 * 
+	 * Inicializamos el array con 7 piezas, ya
+	 * que solo habrá siete piezas de cada color.
 	 * 
 	 * @param color El color de la caja.
 	 */
-
 	public Caja(Color color) {
 		this.color = color;
 		this.piezas = new Pieza[7];
 	}
 
 	/**
-	 * Creamos el método añadir, este método añade la pieza que indiquemos como
-	 * parámetro a la caja unicamente cuando el color de la pieza coincida con el
-	 * color de la caja
+	 * Añade la pieza que indiquemos como parámetro a la caja unicamente cuando el color de la pieza coincida con el
+	 * color de la caja.
 	 * 
-	 * @param Pieza La pieza que se desea añadir a la caja
+	 * @param pieza La pieza que se desea añadir a la caja.
 	 */
-
 	public void añadir(Pieza pieza) {
 		// Comprobación de si el color de la pieza a añadir es igual al color de la caja
 		if (pieza.consultarColor() != this.color)
@@ -63,10 +70,9 @@ public class Caja {
 	}
 
 	/**
-	 * Creamos el método clonar, este método realiza un clon en profundidad de la
-	 * caja
+	 * Devuelve un clon en profundidad de la caja.
 	 * 
-	 * @param cajaClonada Clon en profundidad de la caja
+	 * @return cajaClonada Clon en profundidad de la caja.
 	 */
 
 	public Caja clonar() {
@@ -86,9 +92,9 @@ public class Caja {
 	}
 
 	/**
-	 * Creamos el método consultarColor que nos indicará el color de la caja
+	 * Devuelve el color de la caja.
 	 * 
-	 * @return Color Devuelve el color de la caja
+	 * @return color El color de la caja actual
 	 */
 
 	public Color consultarColor() {
@@ -96,10 +102,10 @@ public class Caja {
 	}
 
 	/**
-	 * Creamos el métodoco consultar piezas que devuelve un array de una dimensión,
-	 * con clones en profundidad de todas las piezas en la caja
+	 * Devuelve un array de una dimensión,
+	 * con clones en profundidad de todas las piezas en la caja.
 	 * 
-	 * @return piezasArray Devuelve un aray de una dimensión con los clones en
+	 * @return piezasArray Array de una dimensión con los clones en
 	 *         profundidad de las piezas de las cajas
 	 */
 	public Pieza[] consultarPiezas() {
@@ -122,13 +128,11 @@ public class Caja {
 	}
 
 	/**
-	 * Creamos el método contarPiezas que cuenta el número total de piezas
-	 * almacenadas en la caja.
+	 * Devuelve el número total de piezas almacenadas en la caja.
 	 * 
 	 * @return numPiezas Devuelve un entero correspondiente con el número de piezas
 	 *         en la caja.
 	 */
-
 	public int contarPiezas() {
 		int numPiezas = 0;
 		for (Pieza pieza : this.piezas) {
@@ -139,10 +143,10 @@ public class Caja {
 	}
 
 	/**
-	 * Sobrecargamos el método contarPiezas, en este caso cuenta el número de piezas
-	 * de un tipo específico almacenadas en la caja.
+	 * Devuelve el número de piezas de un tipo específico almacenadas en la caja.
 	 * 
-	 * @param tipoPieza El tipo de pieza que deseamos contar
+	 * @param tipoPieza El tipo de pieza que deseamos contar.
+	 * 
 	 * @return numPiezas Devuelve un entero con el número de piezas del tipo especificado en la caja.
 	 */
 
@@ -180,7 +184,5 @@ public class Caja {
 	public String toString() {
 		return "Caja [color=" + color + ", piezas=" + Arrays.toString(piezas) + "]";
 	}
-
-	// Faltan equals, hashCode, toString
 
 }

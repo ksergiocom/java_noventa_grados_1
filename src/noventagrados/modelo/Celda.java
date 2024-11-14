@@ -8,35 +8,41 @@ import noventagrados.util.Coordenada;
  * Creamos una clase pública llamada celda que tendrá los atributos de clase,
  * coordenada de tipo coordenada y pieza de tipo pieza.
  * 
- * @author Sergio Sergiy Khudoley
  * @author Víctor Acevedo Lorenzo
+ * @author Sergiy Khudoley
  * @version 1.0
- * @since 1.0
  * 
  */
-
 public class Celda {
+	/**
+	 * Coordenada (x,y) de la celda. Son los indices de los arrays que componen el tablero
+	 * 
+	 * @see noventagrados.util.coordenada
+	 * @see noventagrados.modelo.tablero
+	 */
 	private Coordenada coordenada;
+	
+	/**
+	 * Pieza que hay en la celda, puede no existir pieza asignada a esta celda.
+	 * 
+	 * @see noventagrados.modelo.Pieza
+	 */
 	private Pieza pieza;
 
 	/**
-	 * Creamos el método constructor Celda que inicializa una celda con una
-	 * coordenada específica.
+	 * Inicializa con una coordenada específica.
 	 * 
-	 * @param Coordenada La coordenada que se desea asignar a la celda
+	 * @param coordenada La coordenada que se desea asignar a la celda
 	 */
-
 	public Celda(Coordenada coordenada) {
 		this.coordenada = coordenada;
 	}
 
 	/**
-	 * Creamos el método clonar que crea y devuelve el clon en profundidad de la
-	 * celda 
+	 * Devuelve el clon en profundidad de la celda.
 	 * 
 	 * @return celdaClon Clon en profundidad de la celda
 	 */
-
 	public Celda clonar() {
 		Pieza clonPieza = null;
 		// Siempre tiene una coordenada, por lo cual hago el clon de ella aqui
@@ -54,23 +60,20 @@ public class Celda {
 	}
 
 	/**
-	 * Creamos el método colocar que coloca una pieza en la celda.
+	 * Coloca una pieza en la celda actual.
 	 * 
 	 * @param pieza La pieza a colocar en la celda.
 	 */
-
 	public void colocar(Pieza pieza) {
 		this.pieza = pieza;
 	}
 
 	/**
-	 * Creamos el método consultarColorDePieza que consulta el color de la pieza en
-	 * esta celda.
+	 * Consulta el color de la pieza en esta celda.
 	 * 
 	 * @return Color El color de la pieza si existe, en caso de que no exista
-	 *         devuelve null
+	 *         devuelve null.
 	 */
-
 	public Color consultarColorDePieza() {
 		// En caso de estar vacío se retorna null
 		if (this.pieza == null)
@@ -80,9 +83,9 @@ public class Celda {
 	}
 
 	/**
-	 * Creamos el método consultarCoordena que consulta la coordenada de la celda
+	 * Consulta la coordenada de la celda.
 	 * 
-	 * @return consultarCoordenada consulta la coordenada de la celda
+	 * @return coordenada consulta la coordenada de la celda.
 	 */
 
 	public Coordenada consultarCoordenada() {
@@ -90,14 +93,13 @@ public class Celda {
 	}
 
 	/**
-	 * Creamos el método consultarPieza que devuelve un clon en profundidad de la
+	 * Devuelve un clon en profundidad de la
 	 * pieza perteneciente a la celda, devuelve null en caso de que la celda no
-	 * posea una pieza
+	 * posea una pieza.
 	 * 
 	 * @return clonPieza La pieza clonada, devuelve null en caso de que no hubiera
 	 *         una pieza en la celda
 	 */
-
 	public Pieza consultarPieza() {
 		if (this.pieza == null)
 			return null;
@@ -105,8 +107,7 @@ public class Celda {
 	}
 
 	/**
-	 * Creamos el método eliminarPieza que elminia la pieza de la celda colocando un
-	 * null en la variable de clase celda
+	 * Elminia la pieza de la celda actual.
 	 */
 
 	public void eliminarPieza() {
@@ -114,8 +115,7 @@ public class Celda {
 	}
 
 	/**
-	 * Creamos el método estaVacia que nos indica si hay o no una pieza en la celda
-	 * en cuestión
+	 * Indica si hay o no una pieza en la celda actual.
 	 * 
 	 * @return boolean Devuelve true si la celda está vacía y false si contiene una
 	 *         pieza

@@ -5,20 +5,29 @@ package noventagrados.util;
  * asociado un caracter, 'B' para blanco y 'N' para negro que se almacena en la
  * variable color de tipo char
  * 
- * @author Sergio Sergiy Khudoley
+ * @author Sergiy Khudoley
  * @author Víctor Acevedo Lorenzo
  * @version 1.0
  * @since 1.0
  * 
  */
-
 public enum Color {
-	BLANCO('B'), NEGRO('N');
+	/**
+	 * Color blanco.
+	 */
+	BLANCO('B'), 
+	/**
+	 * Color negro.
+	 */
+	NEGRO('N');
 
+	/**
+	 * Letra asignada a cada color para identificarlo.
+	 */
 	private final char color;
 
 	/**
-	 * Creamos el método Color que asigna el color actual
+	 * Creamos el método Color que asigna el color actual.
 	 * 
 	 * @param letra El caracter correspondiente al color
 	 */
@@ -28,8 +37,7 @@ public enum Color {
 	}
 
 	/**
-	 * Este método se encarga de devolver el color contrario al que tenemos
-	 * actualmente
+	 * Devuelve el color contrario al del enum seleccionado.
 	 * 
 	 * @return Color Devuelve el color contrario
 	 * 
@@ -39,7 +47,7 @@ public enum Color {
 	}
 
 	/**
-	 * Este método se encarga de devolver el caracter asociado con el color actual
+	 * Este método se encarga de devolver el caracter asociado con el color actual.
 	 * 
 	 * @return Color Devuelve la letra del color actual
 	 * 

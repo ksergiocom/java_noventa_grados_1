@@ -5,24 +5,28 @@ import java.util.Arrays;
 import noventagrados.util.Coordenada;
 
 /**
- * Creamos una clase pública llamada Tablero que tendrá el atributo de clase
- * tablero, tablero, un array bidimensional de celdas
+ * El tablero son Celdas dispuestas en una configuración de 7x7.
  * 
- * @author Sergio Sergiy Khudoley
+ * Usamos un array de celdas teniendo en cuenta que la coordenada [0,0] se encuentra en la esquina superior izuiqerda
+ * y es un array de filas (es decir la coordenada superior derecha es [0,6]
+ * 
  * @author Víctor Acevedo Lorenzo
+ * @author Sergiy Khudoley
  * @version 1.0
  * @since 1.0
  * 
  */
-
 public class Tablero {
+	/**
+	 * El tablero será una matriz de celdas. Lo implementamos como un array de arrays de celdas
+	 * 
+	 * @see noventagrados.modelo.Celda
+	 */
 	private Celda[][] tablero;
 
 	/**
-	 * Creamos el método constructor Tablero que inicializa un tablero con 49 celdas
-	 * usando dos bucles for
+	 * Inicializa un tablero con 49 celdas vacías.
 	 */
-
 	public Tablero() {
 		this.tablero = new Celda[7][7];
 		// Vamos a meter una celda en cada uno (Esto esta duplicado)
@@ -34,16 +38,14 @@ public class Tablero {
 	}
 
 	/**
-	 * Creamos un método llamado aTexo que nos devuelve una cadena tipo string que
+	 * Devuelve una cadena tipo string que
 	 * mostrará un dibujo que representará el tablero , indicando las celdas que
 	 * tienen fichas, con color y tipo de ficha y las celdas que no tienen fichas
-	 * con dos guiones "--"
+	 * con dos guiones "--".
 	 * 
-	 * 
-	 * @return String Cadena que representa el tablero
+	 * @return string Cadena que representa el tablero
 	 * 
 	 */
-
 	public String aTexto() {
 		String result = "";
 
@@ -70,8 +72,7 @@ public class Tablero {
 	}
 
 	/**
-	 * Creamos el método clonar que crea y devuelve el clon en profundidad del
-	 * tablero
+	 * Devuelve el clon en profundidad del tablero.
 	 * 
 	 * @return clonTablero Clon en profundidad del tablero
 	 */
@@ -109,12 +110,12 @@ public class Tablero {
 	}
 
 	/**
-	 * Creamos el método consultar celda que devuelve un clon en profundidad de la
+	 * Devuelve un clon en profundidad de la
 	 * celda cuya coordenada se haya pasado como parámetro. Si la coordenada no está
 	 * en el tablero devuelve un valor null.
 	 * 
-	 * @param Coordenada      La coordenada de la celda que se quiere clonar
-	 * @param celdaConsultada El clon en profundidad de la celda clonada
+	 * @param coordenada      La coordenada de la celda que se quiere clonar
+	 * @return celdaConsultada El clon en profundidad de la celda clonada
 	 */
 
 	public Celda consultarCelda(Coordenada coordenada) {
@@ -128,9 +129,9 @@ public class Tablero {
 	}
 
 	/**
-	 * Creamos el método consultarCeldas() que devuelve un array "aplanado" de una
+	 * Devuelve un array "aplanado" de una
 	 * dimensión con todas las celdas del tablero. Cada celda se clona antes de
-	 * agregarse al array
+	 * agregarse al array.
 	 * 
 	 * @return arrayCeldas Un array unidimensional con todas las celdas del tablero.
 	 */
@@ -150,7 +151,7 @@ public class Tablero {
 	}
 
 	/**
-	 * Creamos el método consultarNumeroColumnas que devuelve el número de columnas
+	 * Devuelve el número de columnas
 	 * del tablero.
 	 * 
 	 * @return 7 El número de columnas del tablero
@@ -162,7 +163,7 @@ public class Tablero {
 	}
 
 	/**
-	 * Creamos el método consultarNumeroFilas que devuelve el número de filas del
+	 * Devuelve el número de filas del
 	 * tablero.
 	 * 
 	 * @return 7 El número de filas del tablero
@@ -174,10 +175,10 @@ public class Tablero {
 	}
 
 	/**
-	 * Creamos el método eliminarPieza que elimina la pieza que se encuentre en la
-	 * celda cuyas coordenadas hayamos introducido por parámetroAF¡
+	 * Elimina la pieza que se encuentre en la
+	 * celda cuyas coordenadas hayamos introducido por parámetro.
 	 * 
-	 * @param Coordenada Coordenada de la celda cuya pieza queremos eliminar
+	 * @param coordenada Coordenada de la celda cuya pieza queremos eliminar
 	 */
 
 	public void eliminarPieza(Coordenada coordenada) {
@@ -189,10 +190,9 @@ public class Tablero {
 	}
 
 	/**
-	 * Creamos el método estáEnTablero que comprueba si una coordenada está dentro
-	 * del tablero
+	 * Comprueba si una coordenada está dentro el tablero.
 	 * 
-	 * @param Coordenada Coordenada que queremos comprobar si está dentro del
+	 * @param coordenada Coordenada que queremos comprobar si está dentro del
 	 *                   tablero
 	 * @return estaDentro Variable booleana que nos devuelve true si la coordenada
 	 *         está dentro del tablero y false si no lo está
@@ -225,14 +225,13 @@ public class Tablero {
 	}
 
 	/**
-	 * Creamos el método obtenerCelda, que obtiene la celda ubicada en la coordenada
+	 * Devuelve la celda ubicada en la coordenada
 	 * especificada como parámetro si está dentro de los límites del tablero.
 	 * 
 	 * @param coordenada La coordenada de la celda a obtener.
-	 * @return Celda La celda en la posición especificada, o null si la coordenada
+	 * @return celda La celda en la posición especificada, o null si la coordenada
 	 *         está fuera de los límites del tablero.
 	 */
-
 	public Celda obtenerCelda(Coordenada coordenada) {
 		if (!this.estaEnTablero(coordenada))
 			return null;

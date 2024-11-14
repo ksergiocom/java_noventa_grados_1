@@ -15,9 +15,31 @@ package noventagrados.util;
  */
 
 public enum Sentido {
-	VERTICAL_N(-1, 0), VERTICAL_S(+1, 0), HORIZONTAL_E(0, +1), HORIZONTAL_O(0, -1);
+	/**
+	 * Sentido Norte.
+	 */
+	VERTICAL_N(-1, 0),
+	/**
+	 * Sentido Sur.
+	 */
+	VERTICAL_S(+1, 0),
+	/**
+	 * Sentido Este.
+	 */
+	HORIZONTAL_E(0, +1),
+	/**
+	 * Sentido Oeste.
+	 */
+	HORIZONTAL_O(0, -1);
 
+	/**
+	 * Guarda el desplazamiento de la coordenada x.
+	 */
 	private int desplazamientoEnFilas;
+	
+	/**
+	 * Guada el desplazamiento de la coordenada y.
+	 */
 	private int desplazamientoEnColumnas;
 
 	/**
@@ -37,12 +59,11 @@ public enum Sentido {
 
 	/**
 	 * Este método se encarga de devolver el entero correspondiene con el
-	 * desplazamiento en filas asociado al sentido actual
+	 * desplazamiento en filas asociado al sentido actual.
 	 * 
 	 * @return desplazamientoEnFilas El valor de desplazamiento en filas para este sentido.
 	 * 
 	 */
-
 	public int consultarDesplazamientoEnFilas() {
 		return this.desplazamientoEnFilas;
 	}
@@ -50,7 +71,7 @@ public enum Sentido {
 
 	/**
 	 * Este método se encarga de devolver el entero correspondiene con el
-	 * desplazamiento en columans asociado al sentido actual
+	 * desplazamiento en columans asociado al sentido actual.
 	 * 
 	 * @return desplazamientoEnColumnas El valor de desplazamiento en columnas para este sentido.
 	 * 
