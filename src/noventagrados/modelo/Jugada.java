@@ -10,6 +10,7 @@ package noventagrados.modelo;
  * @author Víctor Acevedo Lorenzo
  * @author Sergiy Khudoley
  * @version 1.0
+ * @since 1.0
  * 
  * @param origen Celda de origen.
  * @param destino Celda de destino.

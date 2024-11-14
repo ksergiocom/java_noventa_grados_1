@@ -15,6 +15,11 @@ import noventagrados.util.Sentido;
 
 /**
  * Árbitro se encarga de controlar el estado de la partida y realizar las acciones necesarias.
+ * 
+ * @author Víctor Acevedo Lorenzo
+ * @author Sergiy Khudoley
+ * @version 1.0
+ * @since 1.0
  */
 public class Arbitro {
 	/**
