@@ -15,8 +15,6 @@ package noventagrados.util;
  * 
  * @param fila    El número de fila en la que se encuentra dicha coordenada
  * @param columna El número de columna en la que se encuentra dicha coordenada
- * @return Devuelve un objeto de tipo coordenada con unos atributos fila y
- *         columna definidos
  */
 public record Coordenada(int fila, int columna) {
 

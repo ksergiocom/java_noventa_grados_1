@@ -5,7 +5,7 @@ package noventagrados.modelo;
  *  
  *  Se utiliza sobre el Árbitro para comprobar la legalidad y realizar movimientos de las piezas.
  *  
- *  @see noventagrados.modelo.Arbitro
+ *  @see noventagrados.control.Arbitro
  *  
  * @author Víctor Acevedo Lorenzo
  * @author Sergiy Khudoley
