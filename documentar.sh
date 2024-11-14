@@ -1,1 +1,1 @@
-javadoc -sourcepath src -d doc -subpackages noventagrados
+javadoc -cp "lib" -sourcepath src -d doc -subpackages noventagrados

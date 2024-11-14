@@ -1,5 +1,7 @@
 # Práctica 1 - Noventa grados
 
+*Los archivos de script están escritos en bash para ser lanzados en GNU/Linux*
+
 ## Autores
 **Víctor Acevedo Lorenzo**
 
