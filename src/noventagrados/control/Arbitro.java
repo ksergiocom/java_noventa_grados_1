@@ -88,13 +88,23 @@ public class Arbitro {
 	public Arbitro clonar() {
 		// Le pasamos un clon del tablero al constructor.
 		// La clonación del resto de elementos hijos se delega directamente el metodo clonar del tablero
-		return new Arbitro(this.tablero.clonar());
+		Arbitro arbitroClonado = new Arbitro(this.tablero.clonar());
+		
+		arbitroClonado.turno = this.turno;
+		arbitroClonado.tablero = this.tablero.clonar();
+		arbitroClonado.contadorJugadas = this.contadorJugadas;
+		arbitroClonado.cajaBlanca = this.cajaBlanca.clonar();
+		arbitroClonado.cajaNegra = this.cajaNegra.clonar();
+		
+		return arbitroClonado;
 	}
 
 	/**
 	 * Coloca cada pieza en su correspondiente posición del tablero, basada en las
 	 * coordenadas proporcionadas. Además, establece el turno actual al color
 	 * indicado.
+	 * 
+	 * Te voy a ASESINAR VICTOR LIST1 LIST2!!!!!!!!!
 	 * 
 	 * @param list      Un array de piezas que se deben colocar en el tablero.
 	 * @param list2 Un array de coordenadas correspondientes a las posiciones
@@ -254,75 +264,6 @@ public class Arbitro {
 	public void empujar(Jugada jugada) {
 		mover(jugada.origen().consultarCoordenada(), jugada.destino().consultarCoordenada());
 		this.contadorJugadas++;
-
-		// Dejamos otra implementación posible de forma iterativa (usa un LinkedList a modo de pila)
-		
-		// Version iterativa usando una pila FIFO para recoger y colocar las piezas
-		//		TableroConsultor consultor = new TableroConsultor(this.tablero);
-		//		LinkedList<Pieza> almacenPiezas = new LinkedList<Pieza>();
-		//		Celda celdaOrigen = jugada.origen();
-		//		Celda celdaDestino = jugada.destino();		
-		//		Sentido sentido = consultor.calcularSentido(celdaOrigen.consultarCoordenada(), celdaDestino.consultarCoordenada());
-		//
-		//		Celda celdaIterada = this.tablero.consultarCelda(celdaOrigen.consultarCoordenada());
-		//		do {
-		//			Pieza piezaCeldaIterada = celdaIterada.consultarPieza();
-		//			// ¿Tiene una pieza esta celda?
-		//			if(piezaCeldaIterada!=null) {
-		//				// Creamos una pieza para moverla a la pila y trabajar con ella
-		//				Pieza piezaClonada = new Pieza(piezaCeldaIterada.consultarTipoPieza(), piezaCeldaIterada.consultarColor());
-		//				// La guardamos en la pila FIFO
-		//				almacenPiezas.add(piezaClonada);
-		//				// Quitamos de la celda original la pieza original
-		//				celdaIterada.eliminarPieza();
-		//			}
-		//			// Ahora buscamos la siguiente coordenada
-		//			Coordenada siguienteCoordenada = new Coordenada(
-		//					celdaIterada.consultarCoordenada().fila() + sentido.consultarDesplazamientoEnFilas(),
-		//					celdaIterada.consultarCoordenada().columna() + sentido.consultarDesplazamientoEnColumnas()
-		//					);
-		//			// Especificamos cual es la siguiente celda par ala proxima iteracion
-		//			celdaIterada = this.tablero.consultarCelda(siguienteCoordenada);
-		//		}while(celdaIterada.consultarCoordenada().fila() != celdaDestino.consultarCoordenada().fila() && celdaIterada.consultarCoordenada().columna() != celdaDestino.consultarCoordenada().columna());
-		//		
-		//		// Ahora celdaIterada es la celda de destino. Hemos llegado tío
-		//		// Ahora miramos las celdas a partir de la celda de destino y
-		//		// Si está llena sacamos la pieza y la metemos en la pila 
-		//		// Metemos en la celda la pieza de la pila
-		//		
-		//		// Celda iterada es celda destino ahora mismo
-		//		while(celdaIterada != null && this.tablero.estaEnTablero(celdaIterada.consultarCoordenada())) {
-		//			Pieza piezaCeldaIterada = celdaIterada.consultarPieza();
-		//			if(piezaCeldaIterada!=null) {
-		//				// Creamos una pieza para moverla a la pila y trabajar con ella
-		//				Pieza piezaClonada = new Pieza(piezaCeldaIterada.consultarTipoPieza(), piezaCeldaIterada.consultarColor());
-		//				// La guardamos en la pila FIFO
-		//				almacenPiezas.add(piezaClonada);
-		//				// Quitamos de la celda original la pieza original
-		//				celdaIterada.eliminarPieza();
-		//			}
-		//			// Sacamos el primer elemento de almacenPiezas (nuestro FIFO)
-		//			celdaIterada.colocar(almacenPiezas.poll());
-		//			Coordenada siguienteCoordenada = new Coordenada(
-		//					celdaIterada.consultarCoordenada().fila() + sentido.consultarDesplazamientoEnFilas(),
-		//					celdaIterada.consultarCoordenada().columna() + sentido.consultarDesplazamientoEnColumnas()
-		//					);
-		//			// Especificamos cual es la siguiente celda par ala proxima iteracion
-		//			celdaIterada = this.tablero.consultarCelda(siguienteCoordenada);
-		//		}
-		//		
-		//		// Aqui ya estaríamos fuera del tablero, así que el resto lo tiramos a la caja respectiva
-		//		// Mientras la 
-		//		while(!almacenPiezas.isEmpty()) {
-		//			Pieza piezaSacada = almacenPiezas.poll();
-		//			if(piezaSacada.consultarColor() == Color.BLANCO) {
-		//				this.cajaBlanca.añadir(piezaSacada);
-		//			}else {
-		//				this.cajaNegra.añadir(piezaSacada);
-		//			}
-		//		}
-		//		
-		//		return;
 	}
 
 	/**

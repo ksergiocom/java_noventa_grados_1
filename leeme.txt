@@ -1,4 +1,4 @@
-# Práctica 1 - Noventa grados
+# Práctica 2 - Noventa grados
 
 *Los archivos de script están escritos en bash para ser lanzados en GNU/Linux*
 
@@ -6,6 +6,9 @@
 **Víctor Acevedo Lorenzo**
 
 **Sergiy Khudoley**
+
+## Coautores
+Hemos recibido ayuda por parte de nuestros compañeros **María Guzmán Valdezate** y **Juan Francisco Benavente Carzolio** para la realización del paquete *control.undo* .
 
 ## Introducción
 

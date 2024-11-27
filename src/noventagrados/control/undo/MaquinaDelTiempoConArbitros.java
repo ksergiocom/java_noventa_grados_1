@@ -6,21 +6,61 @@ import java.util.List;
 
 import noventagrados.control.Arbitro;
 import noventagrados.modelo.Jugada;
+import noventagrados.modelo.Tablero;
 
 public class MaquinaDelTiempoConArbitros extends MecanismoDeDeshacerAbstracto {
 	public MaquinaDelTiempoConArbitros(Date fecha) {
-		this.fechaInicio = fecha;
+		super(fecha);
 	}
 
 	@Override
 	public void deshacerJugada() {
-		// TODO Auto-generated method stub
-		
+		//removemos el ultimo arbitro
+		// Solo si existe y tiene algún elemento
+		if(this.arbitros != null && this.arbitros.size()>0) {
+			this.arbitros.removeLast();	
+		}
 	}
 
 	@Override
 	public void hacerJugada(Jugada jugada) {
-		// TODO Auto-generated method stub
-		
+		Arbitro clonUltimoArbitro;
+		// Cogemos un clon del ultimo arbitro guardado
+		// Si existe algun arbitro guardado, devolver el último.
+		if(this.arbitros != null && this.arbitros.size()>0) {
+			clonUltimoArbitro = this.arbitros.getLast().clonar();	
+		}
+		// Sí NO hay arbitros guardados devolvemos un arbitro nuevo en su configuracion incial.
+		else {
+			Arbitro nuevoArbitro = new Arbitro(new Tablero());
+			nuevoArbitro.colocarPiezasConfiguracionInicial();
+			clonUltimoArbitro = nuevoArbitro;
+		}
+		// Realizamos la jugada
+		clonUltimoArbitro.empujar(jugada);
+		clonUltimoArbitro.cambiarTurno();
+		// guardamos el nuevo arbitro como el ultimo
+		this.arbitros.addLast(clonUltimoArbitro);
 	}
+
+	@Override
+	public Arbitro consultarArbitroActual() {
+		// Si existe algun arbitro guardado, devolver el último.
+		if(this.arbitros != null && this.arbitros.size()>0) {
+			return this.arbitros.getLast().clonar();	
+		}
+		// Sí NO hay arbitros guardados devolvemos un arbitro nuevo en su configuracion incial.
+		else {
+			Arbitro nuevoArbitro = new Arbitro(new Tablero());
+			nuevoArbitro.colocarPiezasConfiguracionInicial();
+			return nuevoArbitro;
+		}
+	}
+	
+	@Override
+	public int consultarNumeroJugadasEnHistorico() {
+		return this.arbitros.size();
+	}
+	
+	
 }
