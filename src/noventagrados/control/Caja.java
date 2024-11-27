@@ -33,7 +33,7 @@ public class Caja {
 	 * 
 	 * @see noventagrados.modelo.Pieza
 	 */
-	private Pieza[] piezas;
+	private ArrayList<Pieza> piezas;
 
 	/**
 	 * Inicializa una caja con un color específico y
@@ -46,7 +46,7 @@ public class Caja {
 	 */
 	public Caja(Color color) {
 		this.color = color;
-		this.piezas = new Pieza[7];
+		this.piezas = new ArrayList<>();
 	}
 
 	/**
@@ -59,35 +59,28 @@ public class Caja {
 		// Comprobación de si el color de la pieza a añadir es igual al color de la caja
 		if (pieza.consultarColor() != this.color)
 			return;
+		//Ya no es necesario el bucle for, estamos en arraylists
+        this.piezas.add(pieza);
 
-		// Iteramos el array de piezas
-		for (int i = 0; i < this.piezas.length; i++) {
-			// Si te encuentras un elemento vacio en el array inserta ahí la pieza y salte
-			if (this.piezas[i] == null) {
-				this.piezas[i] = pieza;
-				return;
-			}
 		}
-	}
-
+	
 	/**
 	 * Devuelve un clon en profundidad de la caja.
 	 * 
 	 * @return cajaClonada Clon en profundidad de la caja.
 	 */
 
-	public Caja clonar() {
-		// Crear una nueva caja con el mismo color
-		Caja cajaClonada = new Caja(this.color);
+    public Caja clonar() {
+        // Crear una nueva caja con el mismo color
+        Caja cajaClonada = new Caja(this.color);
 
-		// Hacer un clon profundo de cada pieza
-		for (int i = 0; i < this.piezas.length; i++) {
-			// Si hay una pieza en la caja original, clonarla
-			if (this.piezas[i] != null) {
-				// Clonamos la pieza y la agregamos a la caja clonada
-				cajaClonada.añadir(this.piezas[i].clonar()); // Asumimos que Pieza tiene un método clonar()
-			}
-		}
+        // Hacer un clon profundo de cada pieza
+        for (Pieza pieza : this.piezas) {
+            if (pieza != null) {
+                // Clonamos la pieza y la agregamos a la caja clonada
+                cajaClonada.añadir(pieza.clonar()); // Asumimos que Pieza tiene un método clonar()
+            }
+        }
 
 		return cajaClonada;
 	}
