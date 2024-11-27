@@ -1,9 +1,10 @@
 Haciendo
+4- Completar el paquete UNDO
 
 ToDo's
 
+
+Hechos
 1- Cambiar todos arrays por List y ArrayList con genericidad EN TODAS
-2- Agregar método clonar a Arbitro
+2- Agregar método clonar a Arbitrxo
 3- TableroConsultor extiende de Tablero ahora (detalles en la página 11)
-4- Completar el paquete UNDO
-5- Refactor del undo.excepcion

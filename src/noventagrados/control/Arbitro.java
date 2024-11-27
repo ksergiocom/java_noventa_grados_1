@@ -1,5 +1,7 @@
 package noventagrados.control;
 import java.util.ArrayList;
+import java.util.List;
+
 import noventagrados.modelo.Tablero;
 import noventagrados.modelo.Pieza;
 
@@ -72,7 +74,6 @@ public class Arbitro {
 	/**
 	 * Cambia el turno al otro contrincante.
 	 */
-
 	public void cambiarTurno() {
 		if (this.turno == Color.BLANCO) {
 			this.turno = Color.NEGRO;
@@ -80,24 +81,33 @@ public class Arbitro {
 			this.turno = Color.BLANCO;
 		}
 	}
+	
+	/**
+	 * Devuelve un clon en profundidad del arbitro
+	 */
+	public Arbitro clonar() {
+		// Le pasamos un clon del tablero al constructor.
+		// La clonación del resto de elementos hijos se delega directamente el metodo clonar del tablero
+		return new Arbitro(this.tablero.clonar());
+	}
 
 	/**
 	 * Coloca cada pieza en su correspondiente posición del tablero, basada en las
 	 * coordenadas proporcionadas. Además, establece el turno actual al color
 	 * indicado.
 	 * 
-	 * @param piezas      Un array de piezas que se deben colocar en el tablero.
-	 * @param coordenadas Un array de coordenadas correspondientes a las posiciones
+	 * @param list      Un array de piezas que se deben colocar en el tablero.
+	 * @param list2 Un array de coordenadas correspondientes a las posiciones
 	 *                    de las piezas.
 	 * @param turnoActual El color que representa el turno actual.
 	 */
-	public void colocarPiezas(ArrayList<Pieza> piezas, ArrayList<Coordenada> coordenadas, Color turnoActual) {
+	public void colocarPiezas(List<Pieza> list, List<Coordenada> list2, Color turnoActual) {
 		this.turno = turnoActual;
 		// Vamos a considerar que las piezas y las coordenadas vienen emparejadas 1 a 1
 		// en los arrays
-		for (int i = 0; i < piezas.size(); i++) {
-			Pieza piezaActual =  piezas.get(i);
-			Coordenada coordenadaActual = coordenadas.get(i);
+		for (int i = 0; i < list.size(); i++) {
+			Pieza piezaActual =  list.get(i);
+			Coordenada coordenadaActual = list2.get(i);
 			this.tablero.colocar(piezaActual, coordenadaActual);
 		}
 	}
