@@ -1,5 +1,5 @@
 package noventagrados.control;
-
+import java.util.ArrayList;
 import noventagrados.modelo.Tablero;
 import noventagrados.modelo.Pieza;
 
@@ -91,13 +91,13 @@ public class Arbitro {
 	 *                    de las piezas.
 	 * @param turnoActual El color que representa el turno actual.
 	 */
-	public void colocarPiezas(Pieza[] piezas, Coordenada[] coordenadas, Color turnoActual) {
+	public void colocarPiezas(ArrayList<Pieza> piezas, ArrayList<Coordenada> coordenadas, Color turnoActual) {
 		this.turno = turnoActual;
 		// Vamos a considerar que las piezas y las coordenadas vienen emparejadas 1 a 1
 		// en los arrays
-		for (int i = 0; i < piezas.length; i++) {
-			Pieza piezaActual = piezas[i];
-			Coordenada coordenadaActual = coordenadas[i];
+		for (int i = 0; i < piezas.size(); i++) {
+			Pieza piezaActual =  piezas.get(i);
+			Coordenada coordenadaActual = coordenadas.get(i);
 			this.tablero.colocar(piezaActual, coordenadaActual);
 		}
 	}
@@ -107,53 +107,50 @@ public class Arbitro {
 	 * siempre el turno para el atacante con piezas blancas.
 	 */
 	public void colocarPiezasConfiguracionInicial() {
-		// Array para almacenar las piezas iniciales: 6 peones blancos, 6 peones negros,
-		// 1 reina blanca, 1 reina negra
-		Pieza[] piezasGeneradas = new Pieza[14];
-		// Array para las coordenadas de las piezas
-		Coordenada[] coordenadasGeneradas = new Coordenada[14];
+	    // Crear listas para almacenar las piezas iniciales y sus coordenadas
+	    ArrayList<Pieza> piezasGeneradas = new ArrayList<>();
+	    ArrayList<Coordenada> coordenadasGeneradas = new ArrayList<>();
 
-		// Colocar la reina blanca en [0,0]
-		piezasGeneradas[0] = new Pieza(TipoPieza.REINA, Color.BLANCO);
-		coordenadasGeneradas[0] = new Coordenada(0, 0);
+	    // Colocar la reina blanca en [0,0]
+	    piezasGeneradas.add(new Pieza(TipoPieza.REINA, Color.BLANCO));
+	    coordenadasGeneradas.add(new Coordenada(0, 0));
 
-		// Colocar los peones blancos en posiciones cercanas a la esquina superior
-		// izquierda
-		piezasGeneradas[1] = new Pieza(TipoPieza.PEON, Color.BLANCO);
-		coordenadasGeneradas[1] = new Coordenada(1, 0);
-		piezasGeneradas[2] = new Pieza(TipoPieza.PEON, Color.BLANCO);
-		coordenadasGeneradas[2] = new Coordenada(2, 0);
-		piezasGeneradas[3] = new Pieza(TipoPieza.PEON, Color.BLANCO);
-		coordenadasGeneradas[3] = new Coordenada(3, 0);
-		piezasGeneradas[4] = new Pieza(TipoPieza.PEON, Color.BLANCO);
-		coordenadasGeneradas[4] = new Coordenada(0, 1);
-		piezasGeneradas[5] = new Pieza(TipoPieza.PEON, Color.BLANCO);
-		coordenadasGeneradas[5] = new Coordenada(0, 2);
-		piezasGeneradas[6] = new Pieza(TipoPieza.PEON, Color.BLANCO);
-		coordenadasGeneradas[6] = new Coordenada(0, 3);
+	    // Colocar los peones blancos en posiciones cercanas a la esquina superior izquierda
+	    piezasGeneradas.add(new Pieza(TipoPieza.PEON, Color.BLANCO));
+	    coordenadasGeneradas.add(new Coordenada(1, 0));
+	    piezasGeneradas.add(new Pieza(TipoPieza.PEON, Color.BLANCO));
+	    coordenadasGeneradas.add(new Coordenada(2, 0));
+	    piezasGeneradas.add(new Pieza(TipoPieza.PEON, Color.BLANCO));
+	    coordenadasGeneradas.add(new Coordenada(3, 0));
+	    piezasGeneradas.add(new Pieza(TipoPieza.PEON, Color.BLANCO));
+	    coordenadasGeneradas.add(new Coordenada(0, 1));
+	    piezasGeneradas.add(new Pieza(TipoPieza.PEON, Color.BLANCO));
+	    coordenadasGeneradas.add(new Coordenada(0, 2));
+	    piezasGeneradas.add(new Pieza(TipoPieza.PEON, Color.BLANCO));
+	    coordenadasGeneradas.add(new Coordenada(0, 3));
 
-		// Colocar la reina negra en [6,6]
-		piezasGeneradas[7] = new Pieza(TipoPieza.REINA, Color.NEGRO);
-		coordenadasGeneradas[7] = new Coordenada(6, 6);
+	    // Colocar la reina negra en [6,6]
+	    piezasGeneradas.add(new Pieza(TipoPieza.REINA, Color.NEGRO));
+	    coordenadasGeneradas.add(new Coordenada(6, 6));
 
-		// Colocar los peones negros en posiciones cercanas a la esquina inferior
-		// derecha
-		piezasGeneradas[8] = new Pieza(TipoPieza.PEON, Color.NEGRO);
-		coordenadasGeneradas[8] = new Coordenada(5, 6);
-		piezasGeneradas[9] = new Pieza(TipoPieza.PEON, Color.NEGRO);
-		coordenadasGeneradas[9] = new Coordenada(4, 6);
-		piezasGeneradas[10] = new Pieza(TipoPieza.PEON, Color.NEGRO);
-		coordenadasGeneradas[10] = new Coordenada(3, 6);
-		piezasGeneradas[11] = new Pieza(TipoPieza.PEON, Color.NEGRO);
-		coordenadasGeneradas[11] = new Coordenada(6, 5);
-		piezasGeneradas[12] = new Pieza(TipoPieza.PEON, Color.NEGRO);
-		coordenadasGeneradas[12] = new Coordenada(6, 4);
-		piezasGeneradas[13] = new Pieza(TipoPieza.PEON, Color.NEGRO);
-		coordenadasGeneradas[13] = new Coordenada(6, 3);
+	    // Colocar los peones negros en posiciones cercanas a la esquina inferior derecha
+	    piezasGeneradas.add(new Pieza(TipoPieza.PEON, Color.NEGRO));
+	    coordenadasGeneradas.add(new Coordenada(5, 6));
+	    piezasGeneradas.add(new Pieza(TipoPieza.PEON, Color.NEGRO));
+	    coordenadasGeneradas.add(new Coordenada(4, 6));
+	    piezasGeneradas.add(new Pieza(TipoPieza.PEON, Color.NEGRO));
+	    coordenadasGeneradas.add(new Coordenada(3, 6));
+	    piezasGeneradas.add(new Pieza(TipoPieza.PEON, Color.NEGRO));
+	    coordenadasGeneradas.add(new Coordenada(6, 5));
+	    piezasGeneradas.add(new Pieza(TipoPieza.PEON, Color.NEGRO));
+	    coordenadasGeneradas.add(new Coordenada(6, 4));
+	    piezasGeneradas.add(new Pieza(TipoPieza.PEON, Color.NEGRO));
+	    coordenadasGeneradas.add(new Coordenada(6, 3));
 
-		// Siempre empiezan blancas :)
-		colocarPiezas(piezasGeneradas, coordenadasGeneradas, Color.BLANCO);
+	    // Siempre empiezan blancas :)
+	    colocarPiezas(piezasGeneradas, coordenadasGeneradas, Color.BLANCO);
 	}
+	
 
 	/**
 	 * Devuelve la caja del color consultado.
