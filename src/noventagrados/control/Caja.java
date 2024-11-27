@@ -102,23 +102,20 @@ public class Caja {
 	 * @return piezasArray Array de una dimensión con los clones en
 	 *         profundidad de las piezas de las cajas
 	 */
-	public Pieza[] consultarPiezas() {
-		// Usar ArrayList para almacenar piezas
-		ArrayList<Pieza> piezasList = new ArrayList<>();
+	public ArrayList<Pieza> consultarPiezas() {
+	    // Crear un ArrayList para almacenar las piezas válidas
+	    ArrayList<Pieza> piezasList = new ArrayList<>();
 
-		// Un forEach de Java! :)
-		for (Pieza pieza : this.piezas) {
-			// Si es una pieza valida agregarla
-			if (pieza != null) {
-				piezasList.add(pieza);
-			}
-		}
+	    // Iterar sobre las piezas existentes
+	    for (Pieza pieza : this.piezas) {
+	        // Si la pieza no es nula, agregarla al ArrayList
+	        if (pieza != null) {
+	            piezasList.add(pieza);
+	        }
+	    }
 
-		// Convertirlo a un array
-		Pieza[] piezasArray = new Pieza[piezasList.size()];
-		piezasList.toArray(piezasArray);
-
-		return piezasArray;
+	    // Retornar el ArrayList directamente
+	    return piezasList;
 	}
 
 	/**
@@ -155,11 +152,7 @@ public class Caja {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + Arrays.hashCode(piezas);
-		result = prime * result + Objects.hash(color);
-		return result;
+		return Objects.hash(color, piezas);
 	}
 
 	@Override
@@ -171,12 +164,14 @@ public class Caja {
 		if (getClass() != obj.getClass())
 			return false;
 		Caja other = (Caja) obj;
-		return color == other.color && Arrays.equals(piezas, other.piezas);
+		return color == other.color && Objects.equals(piezas, other.piezas);
 	}
 
 	@Override
 	public String toString() {
-		return "Caja [color=" + color + ", piezas=" + Arrays.toString(piezas) + "]";
+		return "Caja [color=" + color + ", piezas=" + piezas + "]";
 	}
+
+	
 
 }

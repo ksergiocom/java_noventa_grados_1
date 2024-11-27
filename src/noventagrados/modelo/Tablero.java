@@ -1,6 +1,6 @@
 package noventagrados.modelo;
-
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Objects;
 
 import noventagrados.util.Coordenada;
 
@@ -22,21 +22,22 @@ public class Tablero {
 	 * 
 	 * @see noventagrados.modelo.Celda
 	 */
-	private Celda[][] tablero;
+	private ArrayList<ArrayList<Celda>> tablero;
 
-	/**
-	 * Inicializa un tablero con 49 celdas vacías.
-	 */
-	public Tablero() {
-		this.tablero = new Celda[7][7];
-		// Vamos a meter una celda en cada uno (Esto esta duplicado)
-		for (int i = 0; i < this.tablero.length; i++) {
-			for (int j = 0; j < this.tablero[i].length; j++) {
-				this.tablero[i][j] = new Celda(new Coordenada(i, j));
-			}
-		}
-	}
+    /**
+     * Inicializa un tablero con 49 celdas vacías (7x7).
+     */
+    public Tablero() {
+        this.tablero = new ArrayList<>();
 
+        for (int i = 0; i < 7; i++) {
+            ArrayList<Celda> fila = new ArrayList<>();
+            for (int j = 0; j < 7; j++) {
+                fila.add(new Celda(new Coordenada(i, j))); // Crear una nueva celda
+            }
+            this.tablero.add(fila);
+        }
+    }
 	/**
 	 * Devuelve una cadena tipo string que
 	 * mostrará un dibujo que representará el tablero , indicando las celdas que
@@ -46,30 +47,25 @@ public class Tablero {
 	 * @return string Cadena que representa el tablero
 	 * 
 	 */
-	public String aTexto() {
-		String result = "";
+    public String aTexto() {
+        StringBuilder result = new StringBuilder();
 
-		for (int i = 0; i < this.tablero.length; i++) {
-			result += i + " "; // Agregar índice de fila al inicio de cada línea
-			for (int j = 0; j < this.tablero[i].length; j++) {
-				Celda celdaActual = this.tablero[i][j];
-				Pieza piezaActual = celdaActual.consultarPieza(); // se crea clon profundo
-				// En caso de que no tenga pieza en la celda
-				if (piezaActual == null) {
-					result += "-- ";
-				} else {
-					// En caso de que haya una pieza, añadir su tipo y color
-					result += piezaActual.aTexto() + " ";
-				}
-			}
-			result += "\n"; // Nueva línea al final de cada fila
-		}
+        for (int i = 0; i < this.tablero.size(); i++) {
+            result.append(i).append(" "); // Índice de la fila
+            for (Celda celdaActual : this.tablero.get(i)) {
+                Pieza piezaActual = celdaActual.consultarPieza();
+                if (piezaActual == null) {
+                    result.append("-- ");
+                } else {
+                    result.append(piezaActual.aTexto()).append(" ");
+                }
+            }
+            result.append("\n");
+        }
 
-		// Al final, añadir los índices de las columnas
-		result += "   0  1  2  3  4  5  6";
-
-		return result;
-	}
+        result.append("   0  1  2  3  4  5  6"); // Índices de columna
+        return result.toString();
+    }
 
 	/**
 	 * Devuelve el clon en profundidad del tablero.
@@ -77,19 +73,16 @@ public class Tablero {
 	 * @return clonTablero Clon en profundidad del tablero
 	 */
 
-	public Tablero clonar() {
-		Tablero clonTablero = new Tablero();
+    public Tablero clonar() {
+        Tablero clonTablero = new Tablero();
 
-		// Recorrer el tablero para clonar cada celda y pieza
-		for (int i = 0; i < this.tablero.length; i++) {
-			for (int j = 0; j < this.tablero[i].length; j++) {
-				// Clonar cada celda
-				clonTablero.tablero[i][j] = this.tablero[i][j].clonar();
-			}
-		}
-		return clonTablero;
-	}
-
+        for (int i = 0; i < this.tablero.size(); i++) {
+            for (int j = 0; j < this.tablero.get(i).size(); j++) {
+                clonTablero.tablero.get(i).set(j, this.tablero.get(i).get(j).clonar());
+            }
+        }
+        return clonTablero;
+    }
 	/**
 	 * Coloca una pieza en una celda específica del tablero, indicada por su
 	 * coordenada. Si la pieza es nula o la coordenada está fuera de los límites del
@@ -122,7 +115,7 @@ public class Tablero {
 		if (!this.estaEnTablero(coordenada))
 			return null;
 
-		Celda celdaConsultada = this.tablero[coordenada.fila()][coordenada.columna()];
+        Celda celdaConsultada = this.tablero.get(coordenada.fila()).get(coordenada.columna());
 
 		return celdaConsultada.clonar();
 
@@ -135,20 +128,17 @@ public class Tablero {
 	 * 
 	 * @return arrayCeldas Un array unidimensional con todas las celdas del tablero.
 	 */
-	public Celda[] consultarCeldas() {
-		Celda[] arrayCeldas = new Celda[7 * 7]; // Siempre considero que es de 7x7
+    public ArrayList<Celda> consultarCeldas() {
+        ArrayList<Celda> listaCeldas = new ArrayList<>();
 
-		for (int i = 0; i < this.tablero.length; i++) {
-			for (int j = 0; j < this.tablero[i].length; j++) {
-				// Voy a usar la combinacion de los dos para crear un indice plano
-				// i+j*7 (7 es el array length del interior)
-				int idx = i + j * this.tablero[i].length; // Todos son de 7 en realidad
-				arrayCeldas[idx] = this.tablero[j][i].clonar();
-			}
-		}
+        for (ArrayList<Celda> fila : this.tablero) {
+            for (Celda celda : fila) {
+                listaCeldas.add(celda.clonar()); // Clonar y añadir a la lista
+            }
+        }
 
-		return arrayCeldas;
-	}
+        return listaCeldas;
+    }
 
 	/**
 	 * Devuelve el número de columnas
@@ -235,17 +225,12 @@ public class Tablero {
 	public Celda obtenerCelda(Coordenada coordenada) {
 		if (!this.estaEnTablero(coordenada))
 			return null;
-		return this.tablero[coordenada.fila()][coordenada.columna()]; // Devolvemos la referencia de la celda
+        return this.tablero.get(coordenada.fila()).get(coordenada.columna());
 	}
-
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + Arrays.deepHashCode(tablero);
-		return result;
+		return Objects.hash(tablero);
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -255,12 +240,12 @@ public class Tablero {
 		if (getClass() != obj.getClass())
 			return false;
 		Tablero other = (Tablero) obj;
-		return Arrays.deepEquals(tablero, other.tablero);
+		return Objects.equals(tablero, other.tablero);
 	}
-
 	@Override
 	public String toString() {
-		return "Tablero [tablero=" + Arrays.toString(tablero) + "]";
+		return "Tablero [tablero=" + tablero + "]";
 	}
+
 
 }

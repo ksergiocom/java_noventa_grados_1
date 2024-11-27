@@ -1,11 +1,9 @@
 package noventagrados.control;
-
+import java.util.ArrayList;
 import java.util.Objects;
-
 import noventagrados.modelo.Celda;
 import noventagrados.modelo.Pieza;
 import noventagrados.modelo.Tablero;
-
 import noventagrados.util.Sentido;
 import noventagrados.util.Coordenada;
 import noventagrados.util.TipoPieza;
@@ -117,25 +115,21 @@ public class TableroConsultor {
 	 *         tablero.
 	 */
 	public int consultarNumeroPiezas(TipoPieza tipoPieza, Color color) {
-		int numPiezas = 0;
-		/*
-		 * El tablero tiene un método para recorrer todas las celdas Iteramos todas las
-		 * celdas y si son del tipo y color entonces sumamos el contador.
-		 */
-		// Esto lo hago por claridad
-		Celda[] arrayCeldasTablero = this.tablero.consultarCeldas();
-		// No se usar un foreach todavía
-		for (int i = 0; i < arrayCeldasTablero.length; i++) {
-			Celda celdaIterada = arrayCeldasTablero[i];
-			// Eh! Me has metido un metodo consultarColorDePieza pero no un metodo
-			// ConsultarTipoPieza!!!!!!!!!
-			if (celdaIterada.consultarColorDePieza() == color
-					&& celdaIterada.consultarPieza().consultarTipoPieza() == tipoPieza) {
-				numPiezas++;
-			}
-		}
+	    int numPiezas = 0;
 
-		return numPiezas;
+	    // Consultar todas las celdas como una lista
+	    ArrayList<Celda> listaCeldasTablero = this.tablero.consultarCeldas();
+
+	    // Iterar sobre todas las celdas
+	    for (Celda celdaIterada : listaCeldasTablero) {
+	        if (celdaIterada.consultarColorDePieza() == color
+	                && celdaIterada.consultarPieza() != null // Evitar NullPointerException
+	                && celdaIterada.consultarPieza().consultarTipoPieza() == tipoPieza) {
+	            numPiezas++;
+	        }
+	    }
+
+	    return numPiezas;
 	}
 
 	/**
@@ -228,32 +222,27 @@ public class TableroConsultor {
 
 	/**
 	 * Comprueba si la reina del color indicado está todavía sobre el tablero.
-	 * 
 	 * @param color El color de la reina que se está buscando.
 	 * @return boolean Devuelve true si la reina del color indicado está en el tablero.
 	 */
 	public boolean hayReina(Color color) {
-		// Buscamos todas las celdas
-		Celda[] celdasTablero = this.tablero.consultarCeldas();
+	    ArrayList<Celda> celdasTablero = this.tablero.consultarCeldas();
 
-		// Iteramos cada celda para comprobar su pieza
-		for (int i = 0; i < celdasTablero.length; i++) {
-			// Por claridad lo vamos haciendo pasito a pasito
-			Celda celdaIterada = celdasTablero[i];
-			Pieza piezaDeLaCelda = celdaIterada.consultarPieza();
+	    // Iteramos cada celda para comprobar su pieza
+	    for (Celda celdaIterada : celdasTablero) { // Usamos un bucle for-each para recorrer la lista
+	        Pieza piezaDeLaCelda = celdaIterada.consultarPieza();
 
-			// NO PIENSO FORMATEAR ESTO!!!!!!!!!! PORQUE SE VE MEJOR ASÍ!
-			// Si es la reina salirse con true
-			if (piezaDeLaCelda != null && piezaDeLaCelda.consultarTipoPieza() == TipoPieza.REINA
-					&& piezaDeLaCelda.consultarColor() == color) {
-				return true;
-			}
+	        // Comprobamos si la pieza es una reina del color especificado
+	        if (piezaDeLaCelda != null && piezaDeLaCelda.consultarTipoPieza() == TipoPieza.REINA
+	                && piezaDeLaCelda.consultarColor() == color) {
+	            return true;
+	        }
+	    }
 
-		}
-
-		// Si no se ha encontrado es que false
-		return false;
+	    // Si no se ha encontrado es que no hay reina del color especificado
+	    return false;
 	}
+
 
 	@Override
 	public int hashCode() {
