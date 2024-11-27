@@ -18,7 +18,7 @@ import noventagrados.util.Color;
  * @since 1.0
  * 
  */
-public class TableroConsultor {
+public class TableroConsultor<T extends Tablero> {
 	/**
 	 * Tablero sobre el cual se realizan las consultas.
 	 * 
@@ -31,7 +31,7 @@ public class TableroConsultor {
 	 * 
 	 * @param tablero Tablero a consultar
 	 */
-	public TableroConsultor(Tablero tablero) {
+	public TableroConsultor(T tablero) {
 		// Crear una nueva instancia de Tablero sin usar el método clonar()
 		this.tablero = tablero;
 	}
