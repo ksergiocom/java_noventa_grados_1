@@ -23,8 +23,10 @@ public enum Color {
 
 	/**
 	 * Letra asignada a cada color para identificarlo.
+	 * Corregido respecto a la version 1.0.
+	 * (El nombre correcto en el diagrama es letra, NO color)
 	 */
-	private final char color;
+	private final char letra;
 
 	/**
 	 * Creamos el método Color que asigna el color actual.
@@ -33,7 +35,7 @@ public enum Color {
 	 */
 
 	private Color(char letra) {
-		this.color = letra;
+		this.letra = letra;
 	}
 
 	/**
@@ -43,7 +45,7 @@ public enum Color {
 	 * 
 	 */
 	public Color consultarContrario() {
-		return this.color == 'B' ? Color.NEGRO : Color.BLANCO;
+		return this.letra == 'B' ? Color.NEGRO : Color.BLANCO;
 	}
 
 	/**
@@ -54,6 +56,6 @@ public enum Color {
 	 */
 
 	public char toChar() {
-		return this.color;
+		return this.letra;
 	}
 }
