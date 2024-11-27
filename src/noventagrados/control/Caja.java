@@ -59,10 +59,13 @@ public class Caja {
 		// Comprobación de si el color de la pieza a añadir es igual al color de la caja
 		if (pieza.consultarColor() != this.color)
 			return;
+		// Si hay 7 elementos no añadir
+		if(this.piezas.size() == 7) return;
+		
 		//Ya no es necesario el bucle for, estamos en arraylists
         this.piezas.add(pieza);
 
-		}
+	}
 	
 	/**
 	 * Devuelve un clon en profundidad de la caja.

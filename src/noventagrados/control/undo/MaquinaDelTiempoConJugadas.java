@@ -1,4 +1,4 @@
-package noventagrados.undo;
+package noventagrados.control.undo;
 
 public class MaquinaDelTiempoConJugadas extends MecanismoDeDeshacerAbstracto{
 	public MaquinaDelTiempoConJugadas(Date fecha) {
