@@ -78,54 +78,47 @@ public class NoventaGrados {
 	 * @param args argumentos de entrada en línea de comandos
 	 */
 	public static void main(String[] args) {
-		// LOL Xd nos Ayuda Guillermo, pero esto es pa hacerselo mirar
-		configuracion = "";
-		
-		try {
-		
-	    inicializarPartida();
-	    extraerModoDeshacer(args);
-	    mostrarMensajeBienvenida();
-	    mostrarTablero();
 
-	    boolean partidaEnCurso = true;
 
-	    /*
-	     * Si pudiesemos usar breaks y continues podríamos evitar tanto código anidado.
-	     * Me resulta más legible crear condiciones a un solo nivel con los if's, pero 
-	     * debido a los requirimientos lo hacemos así.
-	     */
-	    
-	    while (partidaEnCurso) {
-	        String textoJugada = recogerTextoDeJugadaPorTeclado();
-	        if (comprobarSalir(textoJugada)) {
-	            finalizarPartida();
-	            partidaEnCurso = false;
-	        } else if (!validarFormato(textoJugada)) { 
-	            mostrarErrorEnFormatoDeEntrada();
-	        } else {
-	            Jugada jugada = extraerJugada(textoJugada);
+			inicializarPartida();
+			extraerModoDeshacer(args);
+			seleccionarMecanismoDeshacer(configuracion);
+			mostrarMensajeBienvenida();
+			mostrarTablero();
 
-	            if (!esLegal(jugada)) {
-	                mostrarErrorPorMovimientoIlegal("El movimiento es ilegal.");
-	            } else {
-	                realizarEmpujón(jugada);
-	                mostrarTablero();
+			boolean partidaEnCurso = true;
 
-	                if (comprobarFinalizacionPartida()) {
-	                    mostrarGanador();
-	                    partidaEnCurso = false;
-	                } else {
-	                    cambiarTurnoPartida();
-	                }
-	            }
-	        }
-	    }
-		}catch(RuntimeException e){
-			mostrarErrorInterno(e);
-		}catch(Exception e) {
-			System.out.println("Hola que tal");
-		}
+			/*
+			 * Si pudiesemos usar breaks y continues podríamos evitar tanto código anidado.
+			 * Me resulta más legible crear condiciones a un solo nivel con los if's, pero
+			 * debido a los requirimientos lo hacemos así.
+			 */
+
+			while (partidaEnCurso) {
+				String textoJugada = recogerTextoDeJugadaPorTeclado();
+				if (comprobarSalir(textoJugada)) {
+					finalizarPartida();
+					partidaEnCurso = false;
+				} else if (!validarFormato(textoJugada)) {
+					mostrarErrorEnFormatoDeEntrada();
+				} else {
+					Jugada jugada = extraerJugada(textoJugada);
+
+					if (!esLegal(jugada)) {
+						mostrarErrorPorMovimientoIlegal("El movimiento es ilegal.");
+					} else {
+						realizarEmpujón(jugada);
+						mostrarTablero();
+
+						if (comprobarFinalizacionPartida()) {
+							mostrarGanador();
+							partidaEnCurso = false;
+						} else {
+							cambiarTurnoPartida();
+						}
+					}
+				}
+			}
 	}
 
 	/**
@@ -167,25 +160,31 @@ public class NoventaGrados {
 	 * que jugamos. No comprueba la corrección del texto introducido.
 	 * 
 	 * @param args argumentos
-	 * @throws OpcionNoDisponibleException si el argumento con el modo de deshacer no
-	 *                                  es correcto
+	 * @throws OpcionNoDisponibleException si el argumento con el modo de deshacer
+	 *                                     no es correcto
 	 */
 	private static void extraerModoDeshacer(String[] args) throws OpcionNoDisponibleException {
 		/*
-	 	El método extraerModoDeshacer deber completarse, analizando el array de argumentos, comprobando
-		que si contiene una primera cadena de texto, esta tiene que ser "jugadas" o "arbitros", inicializando con
-		dicho valor la variable configuracion. Si la primera cadena pasada no es ninguna de estas dos, se
-		lanzará una excepción comprobable OpcionNoDisponibleException. Si el array no contiene elementos,
-		se toma como valor por defecto "jugadas" para la variable configuracion.
+		 * El método extraerModoDeshacer deber completarse, analizando el array de
+		 * argumentos, comprobando que si contiene una primera cadena de texto, esta
+		 * tiene que ser "jugadas" o "arbitros", inicializando con dicho valor la
+		 * variable configuracion. Si la primera cadena pasada no es ninguna de estas
+		 * dos, se lanzará una excepción comprobable OpcionNoDisponibleException. Si el
+		 * array no contiene elementos, se toma como valor por defecto "jugadas" para la
+		 * variable configuracion.
 		 */
-		
+
 		String arg = args[0];
-		
-		if(args.length == 0) configuracion = "jugadas";
-		if(arg == "jugadas") configuracion = "jugadas";
-		if(arg == "arbitros") configuracion = "arbitros";
-		if(arg != "jugadas" && arg != "arbitros") throw new OpcionNoDisponibleException("El tipo de modo pasado no es válido.");
-		
+
+		if (args.length == 0)
+			configuracion = "jugadas";
+		if (arg == "jugadas")
+			configuracion = "jugadas";
+		if (arg == "arbitros")
+			configuracion = "arbitros";
+		if (arg != "jugadas" && arg != "arbitros")
+			throw new OpcionNoDisponibleException("El tipo de modo pasado no es válido.");
+
 	}
 
 	/**
@@ -244,7 +243,7 @@ public class NoventaGrados {
 	private static boolean comprobarSalir(String jugada) {
 		return jugada.equalsIgnoreCase(TEXTO_SALIR);
 	}
-	
+
 	/**
 	 * Comprueba si se quiere deshacer la última jugada.
 	 * 
@@ -409,7 +408,7 @@ public class NoventaGrados {
 	/**
 	 * Muestra el estado del tablero con sus piezas actuales en pantalla.
 	 */
-	private static void mostrarTablero() {		
+	private static void mostrarTablero() {
 		System.out.println();
 		System.out.println(arbitro.consultarTablero().aTexto());
 	}
