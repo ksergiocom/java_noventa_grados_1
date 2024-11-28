@@ -25,7 +25,7 @@ public class MaquinaDelTiempoConJugadas extends MecanismoDeDeshacerAbstracto {
 	 * Creamos método constructor que inicializa una MáquinaDelTiempoConJugadas pasando el
 	 * parámetro fecha al constructor de la clase padre
 	 * 
-	 * @param fecha
+	 * @param fecha Fecha de inicio de la partida
 	 */
 	
 	public MaquinaDelTiempoConJugadas(Date fecha) {
@@ -44,16 +44,22 @@ public class MaquinaDelTiempoConJugadas extends MecanismoDeDeshacerAbstracto {
 	}
 
 	/**
-	 * Jugardar una jugada como la ultima jugada realizada.
+	 * Guardar una jugada como la ultima jugada realizada.
 	 */
 	@Override
 	public void hacerJugada(Jugada jugada) {
 		this.jugadas.addLast(jugada);
 	}
 
+
 	/**
-	 * Devolvemos un clon del arbitro con el estado tras realizar todas las jugadas.
+	 * Consulta el estado actual del árbitro reconstruyendolo desde la posición inicial.
+	 * Y crea un nuevo árbitro con la configuración inicial del tablero,
+	 * aplica todas las jugadas realizadas desde el historial y devuelve el arbitro con el estado final.
+	 * 
+	 * @return Un arbitro con el estado actualizado después de aplicar todas las jugadas realizadas.
 	 */
+	
 	@Override
 	public Arbitro consultarArbitroActual() {
 		// Creamos un nuevo arbitro
@@ -68,6 +74,12 @@ public class MaquinaDelTiempoConJugadas extends MecanismoDeDeshacerAbstracto {
 		// Devolvemos el arbitro con el estado final
 		return nuevoArbitro;
 	}
+	
+    /**
+     * Consulta el numero de jugadas almacenados en el historial.
+     * 
+     * @return El numero de jugadas almacenadas en el historial.
+     */
 	
 	@Override
 	public int consultarNumeroJugadasEnHistorico() {

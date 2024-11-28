@@ -9,7 +9,7 @@ import noventagrados.modelo.Jugada;
 import noventagrados.modelo.Tablero;
 
 /**
- * Clase abstracta que implementa la interfaz {@link MecanismoDeDeshacer}.
+ * Clase abstracta que implementa la interfaz.
  * Esta clase proporciona una implementación base para los mecanismos de deshcer y rehacer jugadas,
  * gestionando la fecha de inicio, los arbitros y el historial de jugada.
  */
@@ -69,7 +69,7 @@ abstract public class MecanismoDeDeshacerAbstracto implements MecanismoDeDeshace
     public abstract void deshacerJugada();
     
     /**
-     * Realiza una nueva jugada y la agrega al historial de jugadas.
+     * Realiza una nueva jugada y la agrega al historial.
      * 
      * @param jugada La jugada a realizar.
      */

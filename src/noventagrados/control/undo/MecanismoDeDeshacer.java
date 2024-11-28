@@ -28,7 +28,6 @@ public interface MecanismoDeDeshacer {
 
     /**
      * Deshace la última jugada realizada, volviendo al estado anterior del juego.
-     * Si no es posible deshacer (por ejemplo, si no hay jugadas previas), no realiza ninguna acción.
      */
     public void deshacerJugada();
 

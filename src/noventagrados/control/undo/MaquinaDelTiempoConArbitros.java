@@ -23,12 +23,18 @@ public class MaquinaDelTiempoConArbitros extends MecanismoDeDeshacerAbstracto {
 	 * Creamos método constructor que inicializa una MáquinaDelTiempoConÁrbitros pasando el
 	 * parámetro fecha al constructor de la clase padre
 	 * 
-	 * @param fecha
+	 * @param fecha Fecha de inicio de la partida
 	 */
 	public MaquinaDelTiempoConArbitros(Date fecha) {
 		super(fecha);
 	}
 
+	 /**
+     * Deshace la última jugada realizada, eliminando el último estado del árbitro guardado.
+     * Si no hay árbitros guardados, no realiza ninguna acción.
+     */
+
+	
 	@Override
 	public void deshacerJugada() {
 		//removemos el ultimo arbitro
@@ -38,6 +44,14 @@ public class MaquinaDelTiempoConArbitros extends MecanismoDeDeshacerAbstracto {
 		}
 	}
 
+	
+    /**
+     * Realiza una nueva jugada y actualiza el estado del árbitro. 
+     * Si no hay árbitros guardados, se crea un nuevo árbitro con la configuración inicial.
+     * 
+     * @param jugada La jugada a realizar.
+     */
+	
 	@Override
 	public void hacerJugada(Jugada jugada) {
 		Arbitro clonUltimoArbitro;
@@ -59,6 +73,13 @@ public class MaquinaDelTiempoConArbitros extends MecanismoDeDeshacerAbstracto {
 		this.arbitros.addLast(clonUltimoArbitro);
 	}
 
+    /**
+     * Consulta el arbitro actual desde el historial.
+     * Si no hay árbitros guardados, devuelve un nuevo árbitro en su configuración inicial.
+     * 
+     * @return El árbitro actual o un nuevo árbitro en configuración inicial si el historial está vacío.
+     */	
+	
 	@Override
 	public Arbitro consultarArbitroActual() {
 		// Si existe algun arbitro guardado, devolver el último.
@@ -72,6 +93,12 @@ public class MaquinaDelTiempoConArbitros extends MecanismoDeDeshacerAbstracto {
 			return nuevoArbitro;
 		}
 	}
+	
+    /**
+     * Consulta el numero de estados del árbitro almacenados en el historial.
+     * 
+     * @return El numero de arbitros almacenados en el historial.
+     */
 	
 	@Override
 	public int consultarNumeroJugadasEnHistorico() {
