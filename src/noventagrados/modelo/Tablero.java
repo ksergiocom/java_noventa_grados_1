@@ -18,7 +18,7 @@ import noventagrados.util.Coordenada;
  */
 public class Tablero {
 	/**
-	 * El tablero será una matriz de celdas. Lo implementamos como un array de arrays de celdas
+	 * El tablero será una matriz de celdas. Lo implementamos como un lista con una lista dentro de celdas
 	 * 
 	 * @see noventagrados.modelo.Celda
 	 */

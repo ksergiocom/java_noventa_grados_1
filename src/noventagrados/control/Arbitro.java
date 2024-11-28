@@ -107,7 +107,7 @@ public class Arbitro {
 	 * Te voy a ASESINAR VICTOR LIST1 LIST2!!!!!!!!!
 	 * 
 	 * @param list      Un array de piezas que se deben colocar en el tablero.
-	 * @param list2 Un array de coordenadas correspondientes a las posiciones
+	 * @param list2 	Un array de coordenadas correspondientes a las posiciones
 	 *                    de las piezas.
 	 * @param turnoActual El color que representa el turno actual.
 	 */
