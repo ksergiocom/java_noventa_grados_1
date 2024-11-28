@@ -77,12 +77,12 @@ public class NoventaGrados {
 	 * 
 	 * @param args argumentos de entrada en línea de comandos
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception{
 
 
-			inicializarPartida();
 			extraerModoDeshacer(args);
 			seleccionarMecanismoDeshacer(configuracion);
+			inicializarPartida();
 			mostrarMensajeBienvenida();
 			mostrarTablero();
 
@@ -174,16 +174,19 @@ public class NoventaGrados {
 		 * variable configuracion.
 		 */
 
-		String arg = args[0];
 
-		if (args.length == 0)
+		if (args.length == 0) {
 			configuracion = "jugadas";
-		if (arg == "jugadas")
-			configuracion = "jugadas";
-		if (arg == "arbitros")
-			configuracion = "arbitros";
-		if (arg != "jugadas" && arg != "arbitros")
-			throw new OpcionNoDisponibleException("El tipo de modo pasado no es válido.");
+			
+		}else {
+			String arg = args[0];
+			if (arg == "jugadas")
+				configuracion = "jugadas";
+			if (arg == "arbitros")
+				configuracion = "arbitros";			
+			if (arg != "jugadas" && arg != "arbitros")
+				throw new OpcionNoDisponibleException("El tipo de modo pasado no es válido.");
+		}
 
 	}
 

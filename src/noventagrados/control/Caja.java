@@ -6,6 +6,7 @@ import noventagrados.util.TipoPieza;
 
 // Vamos a usar ArraysLists :)
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -33,7 +34,7 @@ public class Caja {
 	 * 
 	 * @see noventagrados.modelo.Pieza
 	 */
-	private ArrayList<Pieza> piezas;
+	private List<Pieza> piezas;
 
 	/**
 	 * Inicializa una caja con un color específico y
@@ -106,7 +107,7 @@ public class Caja {
 	 * @return piezasList lista de una dimensión con los clones en
 	 *         profundidad de las piezas de las cajas
 	 */
-	public ArrayList<Pieza> consultarPiezas() {
+	public List<Pieza> consultarPiezas() {
 	    // Crear un ArrayList para almacenar las piezas válidas
 	    ArrayList<Pieza> piezasList = new ArrayList<>();
 
