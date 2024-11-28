@@ -5,8 +5,8 @@ package noventagrados.util;
  * asociado un caracter, 'B' para blanco y 'N' para negro que se almacena en la
  * variable color de tipo char
  * 
- * @author Sergiy Khudoley
- * @author Víctor Acevedo Lorenzo
+ * @author <a href="val1002@alu.ubu.es">Víctor Acevedo Lorenzo</a>
+ * @author <a href="skx1024@alu.ubu.es">Sergiy Khoudoley</a>
  * @version 1.0
  * @since 1.0
  * 

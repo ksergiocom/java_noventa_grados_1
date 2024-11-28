@@ -5,8 +5,8 @@ package noventagrados.util;
  * pieza tiene asociado un caracter, 'P' para peón y 'R' para reina que se
  * almacena en la variable caracter de tipo char.
  * 
- * @author Víctor Acevedo Lorenzo
- * @author Sergiy Khudoley
+ * @author <a href="val1002@alu.ubu.es">Víctor Acevedo Lorenzo</a>
+ * @author <a href="skx1024@alu.ubu.es">Sergiy Khoudoley</a>
  * @version 1.0
  * @since 1.0
  * 

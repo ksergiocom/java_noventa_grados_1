@@ -10,10 +10,10 @@ import noventagrados.modelo.Tablero;
 
 /**
  * Creamos una clase pública llamada MaquinaDelTiempoConJugadas que hereda de 
- * MecanismosDeDeshacerAbstracto
+ * MecanismosDeDeshacerAbstracto.
  * 
- * @author Víctor Acevedo Lorenzo
- * @author Sergiy Khudoley
+ * @author <a href="val1002@alu.ubu.es">Víctor Acevedo Lorenzo</a>
+ * @author <a href="skx1024@alu.ubu.es">Sergiy Khoudoley</a>
  * @version 1.0
  * @since 1.0
  * 
@@ -23,7 +23,7 @@ public class MaquinaDelTiempoConJugadas extends MecanismoDeDeshacerAbstracto {
 
 	/**
 	 * Creamos método constructor que inicializa una MáquinaDelTiempoConJugadas pasando el
-	 * parámetro fecha al constructor de la clase padre
+	 * parámetro fecha al constructor de la clase padre.
 	 * 
 	 * @param fecha Fecha de inicio de la partida
 	 */

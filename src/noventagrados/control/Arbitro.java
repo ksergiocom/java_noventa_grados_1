@@ -18,8 +18,8 @@ import noventagrados.util.Sentido;
 /**
  * Árbitro se encarga de controlar el estado de la partida y realizar las acciones necesarias.
  * 
- * @author Víctor Acevedo Lorenzo
- * @author Sergiy Khudoley
+ * @author <a href="val1002@alu.ubu.es">Víctor Acevedo Lorenzo</a>
+ * @author <a href="skx1024@alu.ubu.es">Sergiy Khoudoley</a>
  * @version 1.0
  * @since 1.0
  */
@@ -83,7 +83,8 @@ public class Arbitro {
 	}
 	
 	/**
-	 * Devuelve un clon en profundidad del arbitro
+	 * Devuelve un clon en profundidad del arbitro.
+	 * @return arbitroClonado Devuelve el árbitro clonado.
 	 */
 	public Arbitro clonar() {
 		// Le pasamos un clon del tablero al constructor.
@@ -104,7 +105,6 @@ public class Arbitro {
 	 * coordenadas proporcionadas. Además, establece el turno actual al color
 	 * indicado.
 	 * 
-	 * Te voy a ASESINAR VICTOR LIST1 LIST2!!!!!!!!!
 	 * 
 	 * @param list      Un array de piezas que se deben colocar en el tablero.
 	 * @param list2 	Un array de coordenadas correspondientes a las posiciones
@@ -343,28 +343,7 @@ public class Arbitro {
 		return estaTerminada;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(contadorJugadas, tablero, turno);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Arbitro other = (Arbitro) obj;
-		return contadorJugadas == other.contadorJugadas && Objects.equals(tablero, other.tablero)
-				&& turno == other.turno;
-	}
-
-	@Override
-	public String toString() {
-		return "Arbitro [tablero=" + tablero + ", contadorJugadas=" + contadorJugadas + ", turno=" + turno + "]";
-	}
+	
 
 	/**
 	 * Mueve una pieza desde una celda con la coordenada de origen hacia la coordenada de destino. En caso de que 
@@ -424,6 +403,31 @@ public class Arbitro {
 
 		// Llamada recursiva para avanzar hacia el destino
 		mover(siguienteCoordenada, destino);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cajaBlanca, cajaNegra, contadorJugadas, tablero, turno);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Arbitro other = (Arbitro) obj;
+		return Objects.equals(cajaBlanca, other.cajaBlanca) && Objects.equals(cajaNegra, other.cajaNegra)
+				&& contadorJugadas == other.contadorJugadas && Objects.equals(tablero, other.tablero)
+				&& turno == other.turno;
+	}
+
+	@Override
+	public String toString() {
+		return "Arbitro [tablero=" + tablero + ", contadorJugadas=" + contadorJugadas + ", turno=" + turno
+				+ ", cajaNegra=" + cajaNegra + ", cajaBlanca=" + cajaBlanca + "]";
 	}
 
 }

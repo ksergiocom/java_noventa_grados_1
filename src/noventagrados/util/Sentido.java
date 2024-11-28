@@ -7,8 +7,8 @@ package noventagrados.util;
  * en las filas y en las columnas, respectivamente, al moverse en una dirección
  * específica.
  * 
- * @author Sergio Sergiy Khudoley
- * @author Víctor Acevedo Lorenzo
+ * @author <a href="val1002@alu.ubu.es">Víctor Acevedo Lorenzo</a>
+ * @author <a href="skx1024@alu.ubu.es">Sergiy Khoudoley</a>
  * @version 1.0
  * @since 1.0
  * 

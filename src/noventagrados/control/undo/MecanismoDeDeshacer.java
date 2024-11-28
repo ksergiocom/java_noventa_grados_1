@@ -9,6 +9,11 @@ import noventagrados.modelo.Jugada;
  * Interface que define el mecanismo para deshacer y rehacer jugadas dentro de un juego.
  * Proporciona métodos para consultar el árbitro actual, el número de jugadas en el historial,
  * y para realizar o deshacer jugadas.
+ * 
+ * @author <a href="val1002@alu.ubu.es">Víctor Acevedo Lorenzo</a>
+ * @author <a href="skx1024@alu.ubu.es">Sergiy Khoudoley</a>
+ * @version 1.0
+ * @since 1.0
  */
 public interface MecanismoDeDeshacer {
 

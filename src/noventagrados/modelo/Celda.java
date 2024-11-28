@@ -8,8 +8,8 @@ import noventagrados.util.Coordenada;
  * Creamos una clase pública llamada celda que tendrá los atributos de clase,
  * coordenada de tipo coordenada y pieza de tipo pieza.
  * 
- * @author Víctor Acevedo Lorenzo
- * @author Sergiy Khudoley
+ * @author <a href="val1002@alu.ubu.es">Víctor Acevedo Lorenzo</a>
+ * @author <a href="skx1024@alu.ubu.es">Sergiy Khoudoley</a>
  * @version 1.0
  * @since 1.0
  * 
@@ -147,5 +147,7 @@ public class Celda {
 	public String toString() {
 		return "Celda [coordenada=" + coordenada + ", pieza=" + pieza + "]";
 	}
+
+	
 
 }

@@ -12,6 +12,11 @@ import noventagrados.modelo.Tablero;
  * Clase abstracta que implementa la interfaz.
  * Esta clase proporciona una implementación base para los mecanismos de deshcer y rehacer jugadas,
  * gestionando la fecha de inicio, los arbitros y el historial de jugada.
+ * 
+ * @author <a href="val1002@alu.ubu.es">Víctor Acevedo Lorenzo</a>
+ * @author <a href="skx1024@alu.ubu.es">Sergiy Khoudoley</a>
+ * @version 1.0
+ * @since 1.0 
  */
 abstract public class MecanismoDeDeshacerAbstracto implements MecanismoDeDeshacer {
     

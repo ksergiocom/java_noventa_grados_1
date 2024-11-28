@@ -1,11 +1,3 @@
-//package noventagrados.textui;
-//import java.util.Scanner;
-//
-//import noventagrados.control.Arbitro;
-//import noventagrados.modelo.Celda;
-//import noventagrados.modelo.Jugada;
-//import noventagrados.modelo.Tablero;
-//import noventagrados.util.Coordenada;
 package noventagrados.textui;
 
 import java.util.Date;
@@ -35,6 +27,8 @@ import noventagrados.control.undo.MaquinaDelTiempoConJugadas;
  * invocaciones a métodos del árbitro.
  *
  * @author <a href="rmartico@ubu.es">Raúl Marticorena</a>
+ * @author <a href="val1002@alu.ubu.es">Víctor Acevedo Lorenzo</a>
+ * @author <a href="skx1024@alu.ubu.es">Sergiy Khoudoley</a>
  * @since 1.0
  * @version 1.0.1
  * @see noventagrados.modelo
@@ -76,6 +70,7 @@ public class NoventaGrados {
 	 * Método raíz con el algoritmo principal en modo texto.
 	 * 
 	 * @param args argumentos de entrada en línea de comandos
+	 * @throws Exception Terminar exception try y catch
 	 */
 	public static void main(String[] args) throws Exception{
 

@@ -12,11 +12,12 @@ import noventagrados.util.Color;
 /**
  * Clase de utilidad para realizar consultas sobre un tablero.
  * 
- * @author Víctor Acevedo Lorenzo
- * @author Sergiy Khudoley
+ * @author <a href="val1002@alu.ubu.es">Víctor Acevedo Lorenzo</a>
+ * @author <a href="skx1024@alu.ubu.es">Sergiy Khoudoley</a>
  * @version 1.0
  * @since 1.0
  * 
+ * @param <T> Tipo genérico que extiende la clase tablero
  */
 public class TableroConsultor<T extends Tablero> {
 	/**
@@ -243,7 +244,6 @@ public class TableroConsultor<T extends Tablero> {
 	    return false;
 	}
 
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(tablero);
@@ -265,5 +265,7 @@ public class TableroConsultor<T extends Tablero> {
 	public String toString() {
 		return "TableroConsultor [tablero=" + tablero + "]";
 	}
+
+
 
 }

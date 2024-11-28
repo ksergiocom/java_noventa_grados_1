@@ -10,8 +10,8 @@ import noventagrados.util.Coordenada;
  * Usamos un array de celdas teniendo en cuenta que la coordenada [0,0] se encuentra en la esquina superior izuiqerda
  * y es un array de filas (es decir la coordenada superior derecha es [0,6]
  * 
- * @author Víctor Acevedo Lorenzo
- * @author Sergiy Khudoley
+ * @author <a href="val1002@alu.ubu.es">Víctor Acevedo Lorenzo</a>
+ * @author <a href="skx1024@alu.ubu.es">Sergiy Khoudoley</a>
  * @version 1.0
  * @since 1.0
  * 

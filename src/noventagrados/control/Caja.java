@@ -15,8 +15,8 @@ import java.util.Objects;
  * 
  * Contiene la lógica necesaria para agregar y contar las piezas que contiene.
  * 
- * @author Víctor Acevedo Lorenzo
- * @author Sergiy Khudoley
+ * @author <a href="val1002@alu.ubu.es">Víctor Acevedo Lorenzo</a>
+ * @author <a href="skx1024@alu.ubu.es">Sergiy Khoudoley</a>
  * @version 1.0
  * @since 1.0
  * 
@@ -176,6 +176,7 @@ public class Caja {
 	public String toString() {
 		return "Caja [color=" + color + ", piezas=" + piezas + "]";
 	}
+
 
 	
 
