@@ -13,6 +13,8 @@ public class MaquinaDelTiempoConArbitros extends MecanismoDeDeshacerAbstracto {
 		super(fecha);
 	}
 
+	/**
+	 */
 	@Override
 	public void deshacerJugada() {
 		//removemos el ultimo arbitro
@@ -57,6 +59,9 @@ public class MaquinaDelTiempoConArbitros extends MecanismoDeDeshacerAbstracto {
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public int consultarNumeroJugadasEnHistorico() {
 		return this.arbitros.size();

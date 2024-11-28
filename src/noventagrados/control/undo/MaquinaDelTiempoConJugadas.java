@@ -44,7 +44,7 @@ public class MaquinaDelTiempoConJugadas extends MecanismoDeDeshacerAbstracto {
 		// Le aplicamos todas las jugadas realizadas
 		for(Jugada jugada: this.jugadas) {
 			nuevoArbitro.empujar(jugada);
-			nuevoArbitro.cambiarTurno();
+//			nuevoArbitro.cambiarTurno();
 		}
 		// Devolvemos el arbitro con el estado final
 		return nuevoArbitro;

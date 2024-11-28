@@ -10,6 +10,8 @@
 ## Coautores
 Hemos recibido ayuda por parte de nuestros compañeros **María Guzmán Valdezate** y **Juan Francisco Benavente Carzolio** para la realización del paquete *control.undo* .
 
+Hemos recibido ayuda por parte de **Guillermo López de Arechavaleta Zapatero** para hacer el paquete *textui*.
+
 ## Introducción
 
 El objetivo fundamental es implementar el juego de Noventa Grados, un juego de tablero abstracto de
