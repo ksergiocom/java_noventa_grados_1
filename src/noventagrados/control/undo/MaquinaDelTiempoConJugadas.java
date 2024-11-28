@@ -8,7 +8,26 @@ import noventagrados.control.Arbitro;
 import noventagrados.modelo.Jugada;
 import noventagrados.modelo.Tablero;
 
+/**
+ * Creamos una clase pública llamada MaquinaDelTiempoConJugadas que hereda de 
+ * MecanismosDeDeshacerAbstracto
+ * 
+ * @author Víctor Acevedo Lorenzo
+ * @author Sergiy Khudoley
+ * @version 1.0
+ * @since 1.0
+ * 
+ */
+
 public class MaquinaDelTiempoConJugadas extends MecanismoDeDeshacerAbstracto {
+
+	/**
+	 * Creamos método constructor que inicializa una MáquinaDelTiempoConJugadas pasando el
+	 * parámetro fecha al constructor de la clase padre
+	 * 
+	 * @param fecha
+	 */
+	
 	public MaquinaDelTiempoConJugadas(Date fecha) {
 		super(fecha);
 	}

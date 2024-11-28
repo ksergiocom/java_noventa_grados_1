@@ -55,6 +55,7 @@ public class Caja {
 	 * 
 	 * @param pieza La pieza que se desea añadir a la caja.
 	 */
+	
 	public void añadir(Pieza pieza) {
 		// Comprobación de si el color de la pieza a añadir es igual al color de la caja
 		if (pieza.consultarColor() != this.color)
@@ -99,10 +100,10 @@ public class Caja {
 	}
 
 	/**
-	 * Devuelve un array de una dimensión,
+	 * Devuelve una lista de una dimensión,
 	 * con clones en profundidad de todas las piezas en la caja.
 	 * 
-	 * @return piezasArray Array de una dimensión con los clones en
+	 * @return piezasList lista de una dimensión con los clones en
 	 *         profundidad de las piezas de las cajas
 	 */
 	public ArrayList<Pieza> consultarPiezas() {
