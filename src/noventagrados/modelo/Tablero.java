@@ -23,6 +23,10 @@ public class Tablero {
 	 * @see noventagrados.modelo.Celda
 	 */
 	private ArrayList<ArrayList<Celda>> tablero;
+	/**
+	 * Constante tamaño que tendrá nuestro tablero.
+	 */
+	private final int TAMANO = 7;
 
     /**
      * Inicializa un tablero con 49 celdas vacías (7x7).
@@ -30,9 +34,9 @@ public class Tablero {
     public Tablero() {
         this.tablero = new ArrayList<>();
 
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < TAMANO; i++) {
             ArrayList<Celda> fila = new ArrayList<>();
-            for (int j = 0; j < 7; j++) {
+            for (int j = 0; j < TAMANO; j++) {
                 fila.add(new Celda(new Coordenada(i, j))); // Crear una nueva celda
             }
             this.tablero.add(fila);
@@ -144,24 +148,29 @@ public class Tablero {
 	 * Devuelve el número de columnas
 	 * del tablero.
 	 * 
-	 * @return 7 El número de columnas del tablero
+	 * <i>Consideramos que siempre son cuadradas</i>
+	 * 
+	 * @return El número de columnas del tablero
 	 */
 
 	public int consultarNumeroColumnas() {
-		// Hardcodeado LOL
-		return 7;
+		// Obtenemos la primera lista de Celdas y vemos su tamaño.
+		// Consideramos que es cuadrado por lo cual todas el resto
+		// de listas tendrán el mismo tamaño.
+		return this.tablero.getFirst().size();
 	}
 
 	/**
 	 * Devuelve el número de filas del
 	 * tablero.
 	 * 
-	 * @return 7 El número de filas del tablero
+	 * <i>Consideramos que siempre son cuadradas</i>
+	 * 
+	 * @return El número de filas del tablero
 	 */
 
 	public int consultarNumeroFilas() {
-		// Hardcodeado LOL
-		return 7;
+		return this.tablero.size();
 	}
 
 	/**

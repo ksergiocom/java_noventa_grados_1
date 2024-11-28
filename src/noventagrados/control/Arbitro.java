@@ -75,11 +75,7 @@ public class Arbitro {
 	 * Cambia el turno al otro contrincante.
 	 */
 	public void cambiarTurno() {
-		if (this.turno == Color.BLANCO) {
-			this.turno = Color.NEGRO;
-		} else {
-			this.turno = Color.BLANCO;
-		}
+		this.turno = this.turno.consultarContrario();
 	}
 	
 	/**

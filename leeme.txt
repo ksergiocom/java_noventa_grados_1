@@ -3,9 +3,9 @@
 *Los archivos de script están escritos en bash para ser lanzados en GNU/Linux*
 
 ## Autores
-**Víctor Acevedo Lorenzo**
+**Víctor Acevedo Lorenzo** GRUPO 202
 
-**Sergiy Khudoley**
+**Sergiy Khudoley** GRUPO 102
 
 ## Coautores
 Hemos recibido ayuda por parte de nuestros compañeros **María Guzmán Valdezate** y **Juan Francisco Benavente Carzolio** para la realización del paquete *control.undo* .

@@ -45,17 +45,15 @@ public class Celda {
 	 * @return celdaClon Clon en profundidad de la celda
 	 */
 	public Celda clonar() {
-		Pieza clonPieza = null;
 		// Siempre tiene una coordenada, por lo cual hago el clon de ella aqui
-		Coordenada clonCoordenada = new Coordenada(this.coordenada.fila(), this.coordenada.columna());
+		Coordenada clonCoordenada = this.consultarCoordenada();
+		Celda celdaClon = new Celda(clonCoordenada);
 
 		// Existe una pieza dentro?
 		if (this.pieza != null) {
-			clonPieza = this.pieza.clonar();
+			Pieza clonPieza = this.pieza.clonar();
+			celdaClon.colocar(clonPieza);
 		}
-
-		Celda celdaClon = new Celda(clonCoordenada);
-		celdaClon.colocar(clonPieza);
 
 		return celdaClon;
 	}

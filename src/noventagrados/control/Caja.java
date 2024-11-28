@@ -28,6 +28,7 @@ public class Caja {
 	 * @see noventagrados.util.Color
 	 */
 	private Color color;
+	private final int MAX_TAMANO = 7;
 	
 	/**
 	 * Piezas contenidas en la caja.
@@ -39,9 +40,6 @@ public class Caja {
 	/**
 	 * Inicializa una caja con un color específico y
 	 * un array para almacenará las piezas.
-	 * 
-	 * Inicializamos el array con 7 piezas, ya
-	 * que solo habrá siete piezas de cada color.
 	 * 
 	 * @param color El color de la caja.
 	 */
@@ -61,8 +59,8 @@ public class Caja {
 		// Comprobación de si el color de la pieza a añadir es igual al color de la caja
 		if (pieza.consultarColor() != this.color)
 			return;
-		// Si hay 7 elementos no añadir
-		if(this.piezas.size() == 7) return;
+		// Si ha llegado al tamaño máximo elementos no añadir
+		if(this.piezas.size() == MAX_TAMANO) return;
 		
 		//Ya no es necesario el bucle for, estamos en arraylists
         this.piezas.add(pieza);

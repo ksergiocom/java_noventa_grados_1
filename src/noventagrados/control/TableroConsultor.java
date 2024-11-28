@@ -211,7 +211,6 @@ public class TableroConsultor<T extends Tablero> {
 		Coordenada coordenadaCentro = new Coordenada(3, 3);
 		Celda celdaCentro = this.tablero.consultarCelda(coordenadaCentro);
 
-		// NO QUIERO FORMATEAR ESTO! SE VE MEJOR ASí!!!!!!!!
 		if (celdaCentro.consultarPieza() != null && celdaCentro.consultarPieza().consultarTipoPieza() == TipoPieza.REINA
 				&& celdaCentro.consultarColorDePieza() == color) {
 			return true;
@@ -242,23 +241,6 @@ public class TableroConsultor<T extends Tablero> {
 
 	    // Si no se ha encontrado es que no hay reina del color especificado
 	    return false;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(tablero);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		TableroConsultor other = (TableroConsultor) obj;
-		return Objects.equals(tablero, other.tablero);
 	}
 
 	@Override
