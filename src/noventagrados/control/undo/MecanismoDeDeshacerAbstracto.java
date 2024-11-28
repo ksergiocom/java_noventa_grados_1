@@ -26,16 +26,6 @@ abstract public class MecanismoDeDeshacerAbstracto implements MecanismoDeDeshace
      */
     protected Date fechaInicio;
     
-    /**
-     * Lista de arbitros que pueden estar asociados al proceso de jugadas.
-     */
-    protected List<Arbitro> arbitros;
-    
-    /**
-     * Lista que almacena el historial de jugadas realizadas.
-     */
-    protected List<Jugada> jugadas;
-    
     // Métodos concretos
     
     /**
@@ -46,8 +36,6 @@ abstract public class MecanismoDeDeshacerAbstracto implements MecanismoDeDeshace
      */
     public MecanismoDeDeshacerAbstracto(Date fecha) {
         this.fechaInicio = fecha;
-        this.jugadas = new ArrayList<Jugada>();
-        this.arbitros = new ArrayList<Arbitro>();
     }
     
     /**
@@ -58,6 +46,18 @@ abstract public class MecanismoDeDeshacerAbstracto implements MecanismoDeDeshace
     public Date obtenerFechaInicio() {
         return this.fechaInicio;
     }
+    
+	/**
+	 * Devuelve un arbitro nuevo con el estado incial
+	 * 
+	 * 
+	 * @return Un arbitro
+	 */
+	private Arbitro crearNuevoArbitroInicial() {
+		Arbitro nuevoArbitro = new Arbitro(new Tablero());
+		nuevoArbitro.colocarPiezasConfiguracionInicial();
+		return nuevoArbitro;
+	}
     
     // Métodos abstractos a implementar en cada clase concreta
     

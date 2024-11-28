@@ -21,6 +21,11 @@ import noventagrados.modelo.Tablero;
 
 public class MaquinaDelTiempoConJugadas extends MecanismoDeDeshacerAbstracto {
 
+    /**
+     * Lista que almacena el historial de jugadas realizadas.
+     */
+    private List<Jugada> jugadas;
+	
 	/**
 	 * Creamos método constructor que inicializa una MáquinaDelTiempoConJugadas pasando el
 	 * parámetro fecha al constructor de la clase padre.
@@ -30,6 +35,7 @@ public class MaquinaDelTiempoConJugadas extends MecanismoDeDeshacerAbstracto {
 	
 	public MaquinaDelTiempoConJugadas(Date fecha) {
 		super(fecha);
+		this.jugadas = new ArrayList<Jugada>();
 	}
 
 	/**

@@ -18,6 +18,10 @@ import noventagrados.modelo.Tablero;
  * 
  */
 public class MaquinaDelTiempoConArbitros extends MecanismoDeDeshacerAbstracto {
+    /**
+     * Lista de arbitros que pueden estar asociados al proceso de jugadas.
+     */
+	private List<Arbitro> arbitros;
 	
 	/**
 	 * Creamos método constructor que inicializa una MáquinaDelTiempoConÁrbitros pasando el
@@ -27,6 +31,7 @@ public class MaquinaDelTiempoConArbitros extends MecanismoDeDeshacerAbstracto {
 	 */
 	public MaquinaDelTiempoConArbitros(Date fecha) {
 		super(fecha);
+		this.arbitros = new ArrayList<Arbitro>();
 	}
 
 	 /**
@@ -62,9 +67,7 @@ public class MaquinaDelTiempoConArbitros extends MecanismoDeDeshacerAbstracto {
 		}
 		// Sí NO hay arbitros guardados devolvemos un arbitro nuevo en su configuracion incial.
 		else {
-			Arbitro nuevoArbitro = new Arbitro(new Tablero());
-			nuevoArbitro.colocarPiezasConfiguracionInicial();
-			clonUltimoArbitro = nuevoArbitro;
+			clonUltimoArbitro = crearNuevoArbitroInicial();
 		}
 		// Realizamos la jugada
 		clonUltimoArbitro.empujar(jugada);
@@ -88,9 +91,7 @@ public class MaquinaDelTiempoConArbitros extends MecanismoDeDeshacerAbstracto {
 		}
 		// Sí NO hay arbitros guardados devolvemos un arbitro nuevo en su configuracion incial.
 		else {
-			Arbitro nuevoArbitro = new Arbitro(new Tablero());
-			nuevoArbitro.colocarPiezasConfiguracionInicial();
-			return nuevoArbitro;
+			return crearNuevoArbitroInicial();
 		}
 	}
 	
@@ -104,6 +105,5 @@ public class MaquinaDelTiempoConArbitros extends MecanismoDeDeshacerAbstracto {
 	public int consultarNumeroJugadasEnHistorico() {
 		return this.arbitros.size();
 	}
-	
 	
 }
