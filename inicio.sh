@@ -28,8 +28,8 @@ echo "PRÁCTICA OBLIGATORIA 1 – PRIMERA CONVOCATORIA"
 echo "Noventa grados"
 echo
 echo "Autores:"
-echo "Víctor Acevedo Lorenzo"
-echo "Sergiy Khudley"
+echo "Víctor Acevedo Lorenzo (Grupo 202)"
+echo "Sergiy Khudley (Grupo 102)"
 echo "--------------------------------------"
 
 echo "Compilando archivos fuente en ./bin"
@@ -42,4 +42,6 @@ echo "Documentacion generada con exito"
 
 echo "A jugar!"
 ./ejecutar_gui.sh
+
+
 echo "Hasta luego :)"

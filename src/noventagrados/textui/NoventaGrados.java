@@ -70,33 +70,40 @@ public class NoventaGrados {
 	 * Método raíz con el algoritmo principal en modo texto.
 	 * 
 	 * @param args argumentos de entrada en línea de comandos
-	 * @throws Exception Terminar exception try y catch
 	 */
-	public static void main(String[] args) throws Exception{
-
-
+	public static void main(String[] args) {
+		try {
+			// Eligiendo mecanismo para deshacer
 			extraerModoDeshacer(args);
 			seleccionarMecanismoDeshacer(configuracion);
+			// Estado incial de la partida
 			inicializarPartida();
 			mostrarMensajeBienvenida();
 			mostrarTablero();
 
 			boolean partidaEnCurso = true;
 
-			/*
-			 * Si pudiesemos usar breaks y continues podríamos evitar tanto código anidado.
-			 * Me resulta más legible crear condiciones a un solo nivel con los if's, pero
-			 * debido a los requirimientos lo hacemos así.
-			 */
-
 			while (partidaEnCurso) {
+				// Cada turno se determina por una entrada por teclado
 				String textoJugada = recogerTextoDeJugadaPorTeclado();
+
+				// --------- Comprobamos que se ha pasdao por teclado
+				// Terminar partida
 				if (comprobarSalir(textoJugada)) {
 					finalizarPartida();
 					partidaEnCurso = false;
-				} else if (!validarFormato(textoJugada)) {
+				}
+				// Deshacer utima juada
+				else if (comprobarDeshacer(textoJugada)) {
+					deshacerJugada();
+				}
+				// ---- Aquí ya llegaría una jugada.
+				// Comprobamos si es INVALIDA, en ese caso mostramos el error por pantalla
+				else if (!validarFormato(textoJugada)) {
 					mostrarErrorEnFormatoDeEntrada();
-				} else {
+				}
+				// Lógica para sacar una jugada VALIDA
+				else {
 					Jugada jugada = extraerJugada(textoJugada);
 
 					if (!esLegal(jugada)) {
@@ -104,7 +111,8 @@ public class NoventaGrados {
 					} else {
 						realizarEmpujón(jugada);
 						mostrarTablero();
-
+						// Despues de realizar el movimiento comprobaos si se ha terminado la partida
+						// o si cambiamos de turno y continuamos
 						if (comprobarFinalizacionPartida()) {
 							mostrarGanador();
 							partidaEnCurso = false;
@@ -114,6 +122,19 @@ public class NoventaGrados {
 					}
 				}
 			}
+
+			// ----- Manejo de errores ----------
+		} catch (OpcionNoDisponibleException ex) {
+			mostrarErrorSeleccionandoModo();
+		} catch (Exception ex) {
+			mostrarErrorInterno(new RuntimeException(ex));
+		} finally {
+			// Esto no hace falta porque igualmente terminamos el programa aquí
+			// y se cierra solo. Haría falta en caso de continuar ejecutandose para liberar
+			// recursos.
+			if (scanner != null)
+				scanner.close();
+		}
 	}
 
 	/**
@@ -169,18 +190,22 @@ public class NoventaGrados {
 		 * variable configuracion.
 		 */
 
-
+		// Valor por defecto si no hay argumentos al lanzar.
 		if (args.length == 0) {
 			configuracion = "jugadas";
-			
-		}else {
+		}
+		// Hay alguna argumento pasado, comprobamos cual es y si es válido.
+		else {
 			String arg = args[0];
-			if (arg == "jugadas")
+
+			if (arg.equals("jugadas")) {
 				configuracion = "jugadas";
-			if (arg == "arbitros")
-				configuracion = "arbitros";			
-			if (arg != "jugadas" && arg != "arbitros")
-				throw new OpcionNoDisponibleException("El tipo de modo pasado no es válido.");
+			} else if (arg.equals("arbitros")) {
+				configuracion = "arbitros";
+			} else {
+				// Lanza excepción si no es "jugadas" o "arbitros"
+				throw new OpcionNoDisponibleException("El tipo de modo pasado no es válido: " + arg);
+			}
 		}
 
 	}

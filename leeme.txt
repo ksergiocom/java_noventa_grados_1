@@ -3,15 +3,24 @@
 *Los archivos de script están escritos en bash para ser lanzados en GNU/Linux*
 
 ## Autores
-**Víctor Acevedo Lorenzo** GRUPO 202
+**Víctor Acevedo Lorenzo** *GRUPO 202*
 
-**Sergiy Khudoley** GRUPO 102
+**Sergiy Khudoley** *GRUPO 102*
 
 ## Coautores
 Hemos recibido ayuda por parte de nuestros compañeros **María Guzmán Valdezate** y **Juan Francisco Benavente Carzolio** para la realización del paquete *control.undo* .
 
 Hemos recibido ayuda por parte de **Guillermo López de Arechavaleta Zapatero** para hacer el paquete *textui*.
 
+## Actualización 2024-11-29 (NoventaGrados 2.0)
+En esta nueva práctica hemos reutilizado la anterior para agregarle un mecanismo de registros ó historico de jugadas.
+Este mecanismo está implementado con dos versiones diferentes, uno guardando los estados de la partida en cada jugada y otro guardando el registro de jugadas aplicadas. 
+
+Para desarollarlo hemos utilizado una jerarquía de herencias en el nuevo paquete **noventagrados.control.undo** que tiene una interfaz con los métodos a implementar, una clase abstracta con la lógica compartida de los dos mecanismos de historico y por ultimo las dos clases concretas con la implementación especifica de cada uno de los mecanismos.
+
+Además se ha mejorado el control de errores creando una excepción personalizada y considerando posibles nuevos errores en nuestro main.
+
+*Se ha actualizado el script **ejecutar_textui.sh** y **ejecutar_gui.sh** para recibir un parametro adicional.
 ## Introducción
 
 El objetivo fundamental es implementar el juego de Noventa Grados, un juego de tablero abstracto de

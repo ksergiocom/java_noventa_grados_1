@@ -1,7 +1,3 @@
 ToDo's
 
-2- Refactor
-1- JAutoDOC
-3- Excepciones
-
 4- Refactor de todos los codigos repetidos. Viene especificado en las correcciones.

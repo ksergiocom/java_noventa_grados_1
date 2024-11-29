@@ -48,12 +48,12 @@ abstract public class MecanismoDeDeshacerAbstracto implements MecanismoDeDeshace
     }
     
 	/**
-	 * Devuelve un arbitro nuevo con el estado incial
+	 * Devuelve un arbitro nuevo con el estado incial.
 	 * 
 	 * 
 	 * @return Un arbitro
 	 */
-	private Arbitro crearNuevoArbitroInicial() {
+	protected Arbitro crearNuevoArbitroInicial() {
 		Arbitro nuevoArbitro = new Arbitro(new Tablero());
 		nuevoArbitro.colocarPiezasConfiguracionInicial();
 		return nuevoArbitro;

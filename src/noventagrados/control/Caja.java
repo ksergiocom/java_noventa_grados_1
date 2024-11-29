@@ -28,6 +28,9 @@ public class Caja {
 	 * @see noventagrados.util.Color
 	 */
 	private Color color;
+	/**
+	 * Constante para definir las dimensiones de nuestro tablero.
+	 */
 	private final int MAX_TAMANO = 7;
 	
 	/**

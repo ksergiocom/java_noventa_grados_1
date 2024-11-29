@@ -1,1 +1,1 @@
-java -cp "bin" noventagrados.textui.NoventaGrados
+java -cp "bin" noventagrados.textui.NoventaGrados "$1"
