@@ -69,9 +69,7 @@ public class MaquinaDelTiempoConJugadas extends MecanismoDeDeshacerAbstracto {
 	@Override
 	public Arbitro consultarArbitroActual() {
 		// Creamos un nuevo arbitro
-		Arbitro nuevoArbitro = new Arbitro(new Tablero());
-		// Posición inicial de todas las piezas
-		nuevoArbitro.colocarPiezasConfiguracionInicial();
+		Arbitro nuevoArbitro = crearNuevoArbitroInicial();
 		// Le aplicamos todas las jugadas realizadas
 		for(Jugada jugada: this.jugadas) {
 			nuevoArbitro.empujar(jugada);
