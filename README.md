@@ -21,6 +21,21 @@ Para desarollarlo hemos utilizado una jerarquía de herencias en el nuevo paquet
 Además se ha mejorado el control de errores creando una excepción personalizada y considerando posibles nuevos errores en nuestro main.
 
 *Se ha actualizado el script **ejecutar_textui.sh** y **ejecutar_gui.sh** para recibir un parametro adicional.
+
+### Listado correciones
+
+1. Codificación UTF-8
+2. Celda *clonacion más sencilla*
+3. Pieza *corrección atributos privados*
+4. Tablero *Agregando constantes*
+5. Arbitro *cambiar turno usando método de Color*
+6. Caja *Definida constnte para tamaño máximo*
+7. TableroConsultor *Borrado el hashCode y equals*
+8. Agregando mensajes de error
+
+
+***
+
 ## Introducción
 
 El objetivo fundamental es implementar el juego de Noventa Grados, un juego de tablero abstracto de

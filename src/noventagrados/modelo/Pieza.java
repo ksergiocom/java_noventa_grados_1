@@ -26,14 +26,14 @@ public class Pieza {
 	 * 
 	 * @see noventagrados.util.Color
 	 */
-	Color color;
+	private Color color;
 	
 	/**
 	 * Tipo de pieza (Reina o Peon).
 	 * 
 	 * @see noventagrados.util.TipoPieza
 	 */
-	TipoPieza tipoPieza;
+	private TipoPieza tipoPieza;
 
 	/**
 	 * Inicializa una pieza con un color de

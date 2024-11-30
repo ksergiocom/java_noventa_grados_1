@@ -41,7 +41,12 @@ echo "Generando documentacion del proyecto en el directorio ./doc"
 echo "Documentacion generada con exito"
 
 echo "A jugar!"
-./ejecutar_gui.sh
+if [ -z "$1" ]
+then
+	./ejecutar_gui.sh
+else
+	./ejecutar_gui.sh "$1"
+fi
 
 
 echo "Hasta luego :)"
